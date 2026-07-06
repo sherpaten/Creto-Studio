@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import ScrollZoom from "./ScrollZoom";
+import ScrollZoom from "./Scrollzoom";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
