@@ -38,7 +38,7 @@ export default function Navbar() {
         scrolled ? "shadow-[0_2px_20px_rgba(1,16,50,0.08)] border-b border-[#011032]/10" : "border-b border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2 shrink-0">
           <img src="/logo.png" alt="Creto Studio" className="h-12 sm:h-14 w-auto" />
         </a>
