@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #011032;
+}
+
+.font-display {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ---- Brand gradients (from Creto Studio palette sheet) ---- */
+.gradient-primary { background: linear-gradient(135deg, #011032, #004ACA); }
+.gradient-brand    { background: linear-gradient(135deg, #004ACA, #0185FA); }
+.gradient-shine     { background: linear-gradient(135deg, #0185FA, #79ABCF); }
+.gradient-dark       { background: linear-gradient(135deg, #012468, #011032); }
+.gradient-vibrant  { background: linear-gradient(135deg, #004ACA, #6AA8FF); }
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1) translateY(0px); opacity: 0.55; }
+  50%      { transform: scale(1.12) translateY(-18px); opacity: 0.75; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 9s ease-in-out infinite;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-24px); }
+}
+
+.animate-float {
+  animation: float-y 7s ease-in-out infinite;
+}
+@keyframes gradient-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
