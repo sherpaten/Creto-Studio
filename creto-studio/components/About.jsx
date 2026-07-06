@@ -71,6 +71,17 @@ export default function About() {
             Designed to grow, thrive, and multiply.
           </h2>
         </motion.div>
+        {/* Logo badge above the philosophy cards */}
+<motion.div
+  variants={fadeUp}
+  className="flex items-center gap-3 rounded-2xl bg-white shadow-lg px-5 py-4 mb-8 sm:mb-10 w-fit"
+>
+  <img src="/logo.png" alt="Creto Studio" className="w-10 h-10 object-contain" />
+  <div>
+    <p className="font-display text-sm sm:text-base font-bold text-[#011032] leading-tight">Creto Studio</p>
+    <p className="font-mono text-xs sm:text-sm text-[#4A5C7A]">Built for long-term growth.</p>
+  </div>
+</motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-24">
           {philosophy.map((p) => (
