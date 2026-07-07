@@ -135,22 +135,6 @@ export default function TechWorldIntro() {
     }
     window.addEventListener("resize", handleResize);
 
-    function triggerExit() {
-      if (stateRef.current.scattering) return;
-      stateRef.current.scattering = true;
-      setExiting(true);
-
-      // Unlock scroll shortly after the visual starts scattering
-      setTimeout(() => {
-        document.body.style.overflow = prevOverflow || "";
-      }, 300);
-
-      // Fully remove overlay after scatter + fade completes
-      setTimeout(() => {
-        setHidden(true);
-      }, 1600);
-    }
-
     function onWheel(e) {
       e.preventDefault();
       triggerExit();
@@ -161,6 +145,27 @@ export default function TechWorldIntro() {
     }
     function onKeyDown(e) {
       if (["ArrowDown", "PageDown", " "].includes(e.key)) triggerExit();
+    }
+
+    function triggerExit() {
+      if (stateRef.current.scattering) return;
+      stateRef.current.scattering = true;
+      setExiting(true);
+
+      // Immediately stop blocking scroll/touch input
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("keydown", onKeyDown);
+
+      // Unlock scroll shortly after the visual starts scattering
+      setTimeout(() => {
+        document.body.style.overflow = prevOverflow || "";
+      }, 300);
+
+      // Fully remove overlay after scatter + fade completes
+      setTimeout(() => {
+        setHidden(true);
+      }, 1600);
     }
 
     window.addEventListener("wheel", onWheel, { passive: false });
