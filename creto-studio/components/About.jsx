@@ -82,12 +82,6 @@ export default function About() {
     </div>
   </div>
 </motion.div>
-This replaces the current structure where the heading block and badge are two separate motion.div elements stacked vertically. Now they're both children of one flex container:
-
-On large screens (lg: and up): flex-row + justify-between puts the heading on the left and the badge on the right, both vertically centered (items-center) at the same level
-On smaller screens: flex-col keeps them stacked (badge below heading) so it doesn't get cramped on mobile — the badge would look odd squeezed next to a multi-line heading on a narrow screen
-
-Just replace your current two separate blocks (the heading motion.div and the badge motion.div) with this single combined block, in the same spot in About.jsx.
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-24">
           {philosophy.map((p) => (
