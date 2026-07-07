@@ -62,26 +62,32 @@ export default function About() {
         viewport={{ once: true, amount: 0.15 }}
         className="relative max-w-7xl mx-auto px-6"
       >
-        <motion.div variants={fadeUp} className="mb-14 sm:mb-20 max-w-3xl">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-[#B8D4EA] mb-4">Our philosophy</p>
-          <h2
-            className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-sweep_6s_ease_infinite]"
-            style={{ backgroundImage: "linear-gradient(90deg, #ffffff 0%, #7fc4ff 25%, #ffffff 50%, #7fc4ff 75%, #ffffff 100%)" }}
-          >
-            Designed to grow, thrive, and multiply.
-          </h2>
-        </motion.div>
-        {/* Logo badge above the philosophy cards */}
-<motion.div
-  variants={fadeUp}
-  className="flex items-center gap-3 rounded-2xl bg-white shadow-lg px-5 py-4 mb-8 sm:mb-10 w-fit"
->
-  <img src="/logo.png" alt="Creto Studio" className="w-10 h-10 object-contain" />
-  <div>
-    <p className="font-display text-sm sm:text-base font-bold text-[#011032] leading-tight">Creto Studio</p>
-    <p className="font-mono text-xs sm:text-sm text-[#4A5C7A]">Built for long-term growth.</p>
+     <motion.div variants={fadeUp} className="mb-14 sm:mb-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+  <div className="max-w-3xl">
+    <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-[#B8D4EA] mb-4">Our philosophy</p>
+    <h2
+      className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-sweep_6s_ease_infinite]"
+      style={{ backgroundImage: "linear-gradient(90deg, #ffffff 0%, #7fc4ff 25%, #ffffff 50%, #7fc4ff 75%, #ffffff 100%)" }}
+    >
+      Designed to grow, thrive, and multiply.
+    </h2>
+  </div>
+
+  {/* Logo badge — now aligned to the right, same level as heading */}
+  <div className="flex items-center gap-3 rounded-2xl bg-white shadow-lg px-5 py-4 w-fit shrink-0">
+    <img src="/logo.png" alt="Creto Studio" className="w-10 h-10 object-contain" />
+    <div>
+      <p className="font-display text-sm sm:text-base font-bold text-[#011032] leading-tight">Creto Studio</p>
+      <p className="font-mono text-xs sm:text-sm text-[#4A5C7A]">Built for long-term growth.</p>
+    </div>
   </div>
 </motion.div>
+This replaces the current structure where the heading block and badge are two separate motion.div elements stacked vertically. Now they're both children of one flex container:
+
+On large screens (lg: and up): flex-row + justify-between puts the heading on the left and the badge on the right, both vertically centered (items-center) at the same level
+On smaller screens: flex-col keeps them stacked (badge below heading) so it doesn't get cramped on mobile — the badge would look odd squeezed next to a multi-line heading on a narrow screen
+
+Just replace your current two separate blocks (the heading motion.div and the badge motion.div) with this single combined block, in the same spot in About.jsx.
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-24">
           {philosophy.map((p) => (
