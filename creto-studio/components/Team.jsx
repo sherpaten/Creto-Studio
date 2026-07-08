@@ -34,11 +34,11 @@ export default function Team() {
                 <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   {/* Front: grayscale photo */}
                   <div className="absolute inset-0 [backface-visibility:hidden]">
-                    <img src={m.photo} alt={m.name} className="w-full h-full object-cover grayscale" />
+                    <img src={m.photo} alt={m.name} className="w-full h-full object-cover object-[center_15%] grayscale" />
                   </div>
                   {/* Back: full color photo */}
                   <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <img src={m.photo} alt={m.name} className="w-full h-full object-cover" />
+                    <img src={m.photo} alt={m.name} className="w-full h-full object-cover object-[center_15%]" />
                   </div>
                 </div>
               </div>

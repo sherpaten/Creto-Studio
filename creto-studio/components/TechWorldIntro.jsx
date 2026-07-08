@@ -233,7 +233,8 @@ export default function TechWorldIntro() {
               initial={{ opacity: 0, scale: 0.4, filter: "blur(20px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1.1, ease: "easeOut" }}
-className="w-24 h-24 sm:w-44 sm:h-44 object-contain mb-6 sm:mb-8"            />
+              className="w-36 h-36 sm:w-44 sm:h-44 object-contain mb-6 sm:mb-8"
+            />
           )}
         </AnimatePresence>
 

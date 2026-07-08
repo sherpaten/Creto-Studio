@@ -40,7 +40,7 @@ export default function Hero() {
         <Hero3D className="w-full h-full" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-16 lg:pt-32 lg:pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-[58vh] sm:pt-40 lg:pt-32 pb-16 lg:pb-20">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
