@@ -35,7 +35,7 @@ export function SoundProvider({ children }) {
   const toggleMusic = useCallback(() => {
     if (!ambientRef.current) return;
 
-    if (musicMuted) {
+    if (ambientRef.current.paused) {
       if (ambientRef.current.ended) {
         ambientRef.current.currentTime = 0;
       }
@@ -53,11 +53,12 @@ export function SoundProvider({ children }) {
       setMusicPlaying(false);
       localStorage.setItem("creto-music-muted", "true");
     }
-  }, [musicMuted]);
+  }, []);
+
 
   const startMusic = useCallback(() => {
     if (!ambientRef.current) return;
-    if (!musicMuted) return;
+    if (!ambientRef.current.paused) return; // already actually playing
 
     const savedMusic = localStorage.getItem("creto-music-muted");
     if (savedMusic === "true") return; // user explicitly muted before, respect that
@@ -73,11 +74,9 @@ export function SoundProvider({ children }) {
         localStorage.setItem("creto-music-muted", "false");
       })
       .catch(() => {});
-  }, [musicMuted]);
+  }, []);
 
-  // Fire on the very first interaction of ANY kind, anywhere on the page —
-  // click, tap, scroll, or keypress — so music starts as close to
-  // "automatically" as browser autoplay rules allow.
+ 
   useEffect(() => {
     if (startedRef.current) return;
 
