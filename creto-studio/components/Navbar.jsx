@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Volume2, VolumeX, Music, Music as MusicOff } from "lucide-react";
+import { Menu, X, Music, Music as MusicOff } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useSound } from "./SoundProvider";
 
@@ -18,7 +18,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { play, sfxMuted, toggleSfxMuted, musicMuted, toggleMusic } = useSound();
+  const { play, musicMuted, toggleMusic } = useSound();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -61,15 +61,6 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-4">
-          <button
-            onClick={toggleSfxMuted}
-            aria-label={sfxMuted ? "Unmute sound effects" : "Mute sound effects"}
-            title={sfxMuted ? "Unmute sound effects" : "Mute sound effects"}
-            className="text-[#012468] hover:text-[#0185FA] transition-colors duration-200"
-          >
-            {sfxMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-
           <button
             onClick={toggleMusic}
             aria-label={musicMuted ? "Play background music" : "Pause background music"}
