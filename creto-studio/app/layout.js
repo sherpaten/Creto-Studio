@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body>
         <SoundProvider>
           <TechWorldIntro />
-          <CustomCursor />
+          {<CustomCursor /> }
           <ScrollProgress />
           {children}
         </SoundProvider>
