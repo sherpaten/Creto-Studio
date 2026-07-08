@@ -5,17 +5,18 @@ import { createContext, useContext, useRef, useCallback, useEffect, useState } f
 const SoundContext = createContext(null);
 
 export function SoundProvider({ children }) {
-  const [musicMuted, setMusicMuted] = useState(true); // starts muted until user opts in
+  const [musicMuted, setMusicMuted] = useState(true);
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   const ambientRef = useRef(null);
+  const startedRef = useRef(false); // guards against starting more than once
 
   useEffect(() => {
     const savedMusic = localStorage.getItem("creto-music-muted");
     if (savedMusic !== null) setMusicMuted(savedMusic === "true");
 
     ambientRef.current = new Audio("/sounds/ambient.mp3");
-    ambientRef.current.loop = false; // 4-minute track, plays once then stops
+    ambientRef.current.loop = false;
     ambientRef.current.volume = 0.25;
     ambientRef.current.preload = "auto";
 
@@ -29,7 +30,6 @@ export function SoundProvider({ children }) {
     };
   }, []);
 
-  
   const play = useCallback(() => {}, []);
 
   const toggleMusic = useCallback(() => {
@@ -60,7 +60,7 @@ export function SoundProvider({ children }) {
     if (!musicMuted) return;
 
     const savedMusic = localStorage.getItem("creto-music-muted");
-    if (savedMusic === "true") return;
+    if (savedMusic === "true") return; // user explicitly muted before, respect that
 
     if (ambientRef.current.ended) {
       ambientRef.current.currentTime = 0;
@@ -74,6 +74,35 @@ export function SoundProvider({ children }) {
       })
       .catch(() => {});
   }, [musicMuted]);
+
+  // Fire on the very first interaction of ANY kind, anywhere on the page —
+  // click, tap, scroll, or keypress — so music starts as close to
+  // "automatically" as browser autoplay rules allow.
+  useEffect(() => {
+    if (startedRef.current) return;
+
+    const trigger = () => {
+      if (startedRef.current) return;
+      startedRef.current = true;
+      startMusic();
+      window.removeEventListener("pointerdown", trigger);
+      window.removeEventListener("keydown", trigger);
+      window.removeEventListener("wheel", trigger);
+      window.removeEventListener("touchstart", trigger);
+    };
+
+    window.addEventListener("pointerdown", trigger, { passive: true });
+    window.addEventListener("keydown", trigger);
+    window.addEventListener("wheel", trigger, { passive: true });
+    window.addEventListener("touchstart", trigger, { passive: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", trigger);
+      window.removeEventListener("keydown", trigger);
+      window.removeEventListener("wheel", trigger);
+      window.removeEventListener("touchstart", trigger);
+    };
+  }, [startMusic]);
 
   return (
     <SoundContext.Provider
