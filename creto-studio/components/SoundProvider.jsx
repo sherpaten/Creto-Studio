@@ -19,6 +19,7 @@ export function SoundProvider({ children }) {
     ambientRef.current.loop = false;
     ambientRef.current.volume = 0.25;
     ambientRef.current.preload = "auto";
+    ambientRef.current.load(); // helps iOS Safari register the element early
 
     ambientRef.current.addEventListener("ended", () => {
       setMusicMuted(true);
@@ -46,7 +47,7 @@ export function SoundProvider({ children }) {
           setMusicPlaying(true);
           localStorage.setItem("creto-music-muted", "false");
         })
-        .catch(() => {});
+        .catch((err) => console.error("Ambient play failed (toggleMusic):", err));
     } else {
       ambientRef.current.pause();
       setMusicMuted(true);
@@ -54,7 +55,6 @@ export function SoundProvider({ children }) {
       localStorage.setItem("creto-music-muted", "true");
     }
   }, []);
-
 
   const startMusic = useCallback(() => {
     if (!ambientRef.current) return;
@@ -73,10 +73,13 @@ export function SoundProvider({ children }) {
         setMusicPlaying(true);
         localStorage.setItem("creto-music-muted", "false");
       })
-      .catch(() => {});
+      .catch((err) => console.error("Ambient play failed (startMusic):", err));
   }, []);
 
- 
+  // Fire on the very first interaction of ANY kind, anywhere on the page —
+  // click, tap, scroll, or keypress — so music starts as close to
+  // "automatically" as browser autoplay rules allow. Works the same way
+  // on mobile since touchstart/pointerdown count as valid gesture triggers.
   useEffect(() => {
     if (startedRef.current) return;
 
