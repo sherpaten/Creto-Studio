@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
+import { useSound } from "./SoundProvider";
 
 const IS_MOBILE_WIDTH = 640;
 
@@ -12,6 +13,7 @@ export default function TechWorldIntro() {
   const [hidden, setHidden] = useState(false);
   const [stage, setStage] = useState("particles"); // particles -> logo -> text -> scroll
   const stateRef = useRef({ scattering: false });
+  const { startMusic } = useSound();
 
   useEffect(() => {
     const t1 = setTimeout(() => setStage("logo"), 900);
@@ -170,6 +172,7 @@ export default function TechWorldIntro() {
       if (stateRef.current.scattering) return;
       stateRef.current.scattering = true;
       setExiting(true);
+      startMusic(); // start ambient music on the same gesture that exits the intro
 
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchmove", onTouchMove);

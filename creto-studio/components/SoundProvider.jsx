@@ -78,9 +78,39 @@ export function SoundProvider({ children }) {
     }
   }, [musicMuted]);
 
+  // Explicitly start music (used by the intro's exit gesture). No-op if
+  // already playing, or if the user previously chose to mute it themselves.
+  const startMusic = useCallback(() => {
+    if (!ambientRef.current) return;
+    if (!musicMuted) return; // already playing
+
+    const savedMusic = localStorage.getItem("creto-music-muted");
+    if (savedMusic === "true") return; // user explicitly muted before, respect that
+
+    if (ambientRef.current.ended) {
+      ambientRef.current.currentTime = 0;
+    }
+    ambientRef.current
+      .play()
+      .then(() => {
+        setMusicMuted(false);
+        setMusicPlaying(true);
+        localStorage.setItem("creto-music-muted", "false");
+      })
+      .catch(() => {});
+  }, [musicMuted]);
+
   return (
     <SoundContext.Provider
-      value={{ play, sfxMuted, toggleSfxMuted, musicMuted, musicPlaying, toggleMusic }}
+      value={{
+        play,
+        sfxMuted,
+        toggleSfxMuted,
+        musicMuted,
+        musicPlaying,
+        toggleMusic,
+        startMusic,
+      }}
     >
       {children}
     </SoundContext.Provider>
