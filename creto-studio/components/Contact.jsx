@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
+import { useSound } from "./SoundProvider";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -44,16 +45,18 @@ function FloatingField({ label, children }) {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", capability: "", scope: "" });
-  const [status, setStatus] = useState("idle"); // idle | sending | sent
+  const [status, setStatus] = useState("idle");
+  const { play } = useSound();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (status !== "idle") return;
+    play("click");
     setStatus("sending");
 
-    // simulate submit — swap with real request
     setTimeout(() => {
       setStatus("sent");
+      play("success");
       setTimeout(() => setStatus("idle"), 2200);
     }, 1000);
   };

@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Volume2, VolumeX, Music, Music as MusicOff } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import { useSound } from "./SoundProvider";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -17,6 +18,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { play, sfxMuted, toggleSfxMuted, musicMuted, toggleMusic } = useSound();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,6 +34,11 @@ export default function Navbar() {
     };
   }, [open]);
 
+  const handleLinkClick = () => {
+    play("nav");
+    setOpen(false);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
@@ -39,45 +46,55 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 shrink-0">
+        <a href="#home" className="flex items-center gap-2 shrink-0" onClick={() => play("click")}>
           <img src="/logo.png" alt="Creto Studio" className="h-12 sm:h-14 w-auto" />
         </a>
 
-        {/* Desktop links */}
         <ul className="hidden lg:flex items-center gap-9">
           {links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                className="font-mono text-base text-[#012468] hover:text-[#0185FA] transition-colors duration-200"
-              >
+              <a href={l.href} onMouseEnter={() => play("hover")} onClick={() => play("nav")} className="font-mono text-base text-[#012468] hover:text-[#0185FA] transition-colors duration-200">
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <MagneticButton>
-          <a
-            href="#contact"
-            data-cursor-hover
-            className="hidden lg:inline-flex items-center rounded-full bg-[#004ACA] px-7 py-3 text-white font-mono text-base hover:bg-[#0185FA] hover:shadow-[0_0_25px_rgba(1,133,250,0.4)] transition-all duration-300"
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggleSfxMuted}
+            aria-label={sfxMuted ? "Unmute sound effects" : "Mute sound effects"}
+            title={sfxMuted ? "Unmute sound effects" : "Mute sound effects"}
+            className="text-[#012468] hover:text-[#0185FA] transition-colors duration-200"
           >
-            Get in touch
-          </a>
-        </MagneticButton>
+            {sfxMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          </button>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Open menu"
-          className="lg:hidden text-[#011032] p-2 -mr-2"
-        >
-          <Menu size={28} />
-        </button>
+          <button
+            onClick={toggleMusic}
+            aria-label={musicMuted ? "Play background music" : "Pause background music"}
+            title={musicMuted ? "Play background music" : "Pause background music"}
+            className="text-[#012468] hover:text-[#0185FA] transition-colors duration-200"
+          >
+            {musicMuted ? <MusicOff size={20} /> : <Music size={20} />}
+          </button>
+
+          <MagneticButton>
+            <a href="#contact" data-cursor-hover onMouseEnter={() => play("hover")} onClick={() => play("click")} className="hidden lg:inline-flex items-center rounded-full bg-[#004ACA] px-7 py-3 text-white font-mono text-base hover:bg-[#0185FA] hover:shadow-[0_0_25px_rgba(1,133,250,0.4)] transition-all duration-300">
+              Get in touch
+            </a>
+          </MagneticButton>
+
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            className="lg:hidden text-[#011032] p-2 -mr-2"
+          >
+            <Menu size={28} />
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile menu overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -115,21 +132,13 @@ export default function Navbar() {
                     show: { opacity: 1, y: 0 },
                   }}
                 >
-                  <a
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="font-display text-3xl text-[#011032]"
-                  >
+                  <a href={l.href} onClick={handleLinkClick} className="font-display text-3xl text-[#011032]">
                     {l.label}
                   </a>
                 </motion.li>
               ))}
               <motion.li variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="mt-4 inline-flex items-center rounded-full bg-[#004ACA] px-8 py-3 text-white font-mono text-sm"
-                >
+                <a href="#contact" onClick={handleLinkClick} className="mt-4 inline-flex items-center rounded-full bg-[#004ACA] px-8 py-3 text-white font-mono text-sm">
                   Get in touch
                 </a>
               </motion.li>
