@@ -74,7 +74,7 @@ export default function Contact() {
 
             <div className="rounded-2xl border border-[#011032]/10 bg-[#011032] p-6 mb-6">
               <p className="font-mono text-xs tracking-[0.15em] uppercase text-[#79ABCF]/70 mb-2">Official Communication Vector</p>
-              <a href="mailto:idesign4269@gmail.com" className="font-display text-xl font-bold text-white hover:text-[#0185FA] transition-colors duration-300">idesign4269@gmail.com</a>
+              <a href="mailto:info@cretostudio.com" className="font-display text-xl font-bold text-white hover:text-[#0185FA] transition-colors duration-300">idesign4269@gmail.com</a>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
