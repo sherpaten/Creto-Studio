@@ -62,37 +62,34 @@ export default function About() {
         viewport={{ once: true, amount: 0.15 }}
         className="relative max-w-7xl mx-auto px-6"
       >
-     <motion.div variants={fadeUp} className="mb-14 sm:mb-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-  <div className="max-w-3xl">
-    <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-[#B8D4EA] mb-4">Our philosophy</p>
-    <h2
-      className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-sweep_6s_ease_infinite]"
-      style={{ backgroundImage: "linear-gradient(90deg, #ffffff 0%, #7fc4ff 25%, #ffffff 50%, #7fc4ff 75%, #ffffff 100%)" }}
-    >
-      Designed to grow, thrive, and multiply.
-    </h2>
-  </div>
+        <motion.div variants={fadeUp} className="mb-14 sm:mb-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div className="max-w-3xl">
+            <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-[#B8D4EA] mb-4">Our philosophy</p>
+            <h2
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-sweep_6s_ease_infinite]"
+              style={{ backgroundImage: "linear-gradient(90deg, #ffffff 0%, #7fc4ff 25%, #ffffff 50%, #7fc4ff 75%, #ffffff 100%)" }}
+            >
+              Designed to grow, thrive, and multiply.
+            </h2>
+          </div>
 
-  {/* Logo badge — now aligned to the right, same level as heading */}
-  <div className="flex items-center gap-3 rounded-2xl bg-white shadow-lg px-5 py-4 w-fit shrink-0">
-    <img src="/logo.png" alt="Creto Studio" className="w-10 h-10 object-contain" />
-    <div>
-      <p className="font-display text-sm sm:text-base font-bold text-[#011032] leading-tight">Creto Studio</p>
-      <p className="font-mono text-xs sm:text-sm text-[#4A5C7A]">Built for long-term growth.</p>
-    </div>
-  </div>
-</motion.div>
+          <div className="flex items-center gap-3 rounded-2xl bg-white shadow-lg px-5 py-4 w-fit shrink-0">
+            <img src="/logo.png" alt="Creto Studio" className="w-10 h-10 object-contain" />
+            <div>
+              <p className="font-display text-sm sm:text-base font-bold text-[#011032] leading-tight">Creto Studio</p>
+              <p className="font-mono text-xs sm:text-sm text-[#4A5C7A]">Built for long-term growth.</p>
+            </div>
+          </div>
+        </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-24">
           {philosophy.map((p) => (
             <ScrollZoom key={p.n} minScale={0.9}>
               <motion.div
-                variants={fadeUp}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="group relative rounded-2xl border border-white/10 bg-[#012468]/30 backdrop-blur-sm p-6 sm:p-8 hover:border-[#0185FA]/50 hover:bg-[#012468]/50 transition-colors duration-300 overflow-hidden"
               >
-                {/* Glowing orb that follows in from the corner on hover */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#0185FA] opacity-0 blur-3xl group-hover:opacity-25 transition-opacity duration-500" />
 
                 <motion.p
@@ -106,7 +103,6 @@ export default function About() {
                 </motion.p>
                 <p className="relative font-mono text-sm sm:text-base text-[#C7DDF2] leading-relaxed">{p.d}</p>
 
-                {/* Bottom accent line that draws in on hover */}
                 <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0185FA] to-[#3DA3FF] group-hover:w-full transition-all duration-500 ease-out" />
               </motion.div>
             </ScrollZoom>
@@ -142,7 +138,6 @@ export default function About() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group relative rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-8 pl-8 sm:pl-10 hover:bg-[#012468]/30 hover:border-[#0185FA]/40 transition-colors duration-300 overflow-hidden"
             >
-              {/* Left accent bar that grows in on hover */}
               <span className="absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-[#0185FA] to-[#3DA3FF] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-400 ease-out" />
 
               <h4 className="font-display text-lg font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
