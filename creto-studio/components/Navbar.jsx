@@ -18,7 +18,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { play, musicMuted, toggleMusic } = useSound();
+  const { musicMuted, toggleMusic } = useSound();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -35,7 +35,6 @@ export default function Navbar() {
   }, [open]);
 
   const handleLinkClick = () => {
-    play("nav");
     setOpen(false);
   };
 
@@ -46,14 +45,14 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 shrink-0" onClick={() => play("click")}>
+        <a href="#home" className="flex items-center gap-2 shrink-0">
           <img src="/logo.png" alt="Creto Studio" className="h-12 sm:h-14 w-auto" />
         </a>
 
         <ul className="hidden lg:flex items-center gap-9">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} onMouseEnter={() => play("hover")} onClick={() => play("nav")} className="font-mono text-base text-[#012468] hover:text-[#0185FA] transition-colors duration-200">
+              <a href={l.href} className="font-mono text-base text-[#012468] hover:text-[#0185FA] transition-colors duration-200">
                 {l.label}
               </a>
             </li>
@@ -71,7 +70,7 @@ export default function Navbar() {
           </button>
 
           <MagneticButton>
-            <a href="#contact" data-cursor-hover onMouseEnter={() => play("hover")} onClick={() => play("click")} className="hidden lg:inline-flex items-center rounded-full bg-[#004ACA] px-7 py-3 text-white font-mono text-base hover:bg-[#0185FA] hover:shadow-[0_0_25px_rgba(1,133,250,0.4)] transition-all duration-300">
+            <a href="#contact" data-cursor-hover className="hidden lg:inline-flex items-center rounded-full bg-[#004ACA] px-7 py-3 text-white font-mono text-base hover:bg-[#0185FA] hover:shadow-[0_0_25px_rgba(1,133,250,0.4)] transition-all duration-300">
               Get in touch
             </a>
           </MagneticButton>

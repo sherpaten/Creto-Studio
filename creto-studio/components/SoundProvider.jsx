@@ -5,81 +5,72 @@ import { createContext, useContext, useRef, useCallback, useEffect, useState } f
 const SoundContext = createContext(null);
 
 export function SoundProvider({ children }) {
-  const [musicMuted, setMusicMuted] = useState(true);
+  const [musicMuted, setMusicMuted] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   const ambientRef = useRef(null);
-  const startedRef = useRef(false); // guards against starting more than once
+  const startedRef = useRef(false);
+  const userMutedRef = useRef(false); // tracks explicit user mute, separate from auto-pause on tab hide
 
   useEffect(() => {
-    const savedMusic = localStorage.getItem("creto-music-muted");
-    if (savedMusic !== null) setMusicMuted(savedMusic === "true");
+    const savedMuted = localStorage.getItem("creto-music-muted");
+    const wasMuted = savedMuted === "true";
+    userMutedRef.current = wasMuted;
+    setMusicMuted(wasMuted);
 
-    ambientRef.current = new Audio("/sounds/ambient.mp3");
-    ambientRef.current.loop = false;
-    ambientRef.current.volume = 0.25;
-    ambientRef.current.preload = "auto";
-    ambientRef.current.load(); // helps iOS Safari register the element early
-
-    ambientRef.current.addEventListener("ended", () => {
-      setMusicMuted(true);
-      setMusicPlaying(false);
-    });
+    const audio = new Audio("/sounds/ambient.mp3");
+    audio.loop = true; // seamless loop
+    audio.volume = 0.08; // 8%, within your 5-10% target
+    audio.preload = "auto";
+    ambientRef.current = audio;
 
     return () => {
-      ambientRef.current?.pause();
+      audio.pause();
     };
   }, []);
 
-  const play = useCallback(() => {}, []);
-
-  const toggleMusic = useCallback(() => {
-    if (!ambientRef.current) return;
-
-    if (ambientRef.current.paused) {
-      if (ambientRef.current.ended) {
-        ambientRef.current.currentTime = 0;
-      }
-      ambientRef.current
-        .play()
-        .then(() => {
-          setMusicMuted(false);
-          setMusicPlaying(true);
-          localStorage.setItem("creto-music-muted", "false");
-        })
-        .catch((err) => console.error("Ambient play failed (toggleMusic):", err));
-    } else {
-      ambientRef.current.pause();
-      setMusicMuted(true);
-      setMusicPlaying(false);
-      localStorage.setItem("creto-music-muted", "true");
-    }
-  }, []);
-
   const startMusic = useCallback(() => {
-    if (!ambientRef.current) return;
-    if (!ambientRef.current.paused) return; // already actually playing
+    const audio = ambientRef.current;
+    if (!audio || !audio.paused) return;
+    if (userMutedRef.current) return; // respect an explicit prior mute
 
-    const savedMusic = localStorage.getItem("creto-music-muted");
-    if (savedMusic === "true") return; // user explicitly muted before, respect that
-
-    if (ambientRef.current.ended) {
-      ambientRef.current.currentTime = 0;
-    }
-    ambientRef.current
+    audio
       .play()
       .then(() => {
-        setMusicMuted(false);
         setMusicPlaying(true);
-        localStorage.setItem("creto-music-muted", "false");
+        setMusicMuted(false);
       })
-      .catch((err) => console.error("Ambient play failed (startMusic):", err));
+      .catch(() => {
+        // Autoplay blocked — will retry on the next interaction automatically
+      });
   }, []);
 
-  // Fire on the very first interaction of ANY kind, anywhere on the page —
-  // click, tap, scroll, or keypress — so music starts as close to
-  // "automatically" as browser autoplay rules allow. Works the same way
-  // on mobile since touchstart/pointerdown count as valid gesture triggers.
+  const toggleMusic = useCallback(() => {
+    const audio = ambientRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      userMutedRef.current = false;
+      localStorage.setItem("creto-music-muted", "false");
+      audio
+        .play()
+        .then(() => {
+          setMusicPlaying(true);
+          setMusicMuted(false);
+        })
+        .catch(() => {});
+    } else {
+      userMutedRef.current = true;
+      localStorage.setItem("creto-music-muted", "true");
+      audio.pause();
+      setMusicPlaying(false);
+      setMusicMuted(true);
+    }
+  }, []);
+
+  // Start on the very first interaction anywhere on the page — this lines up
+  // with the moment the user scrolls/clicks/taps to get past TechWorldIntro,
+  // so music begins as close to "automatic" as browsers allow.
   useEffect(() => {
     if (startedRef.current) return;
 
@@ -106,10 +97,33 @@ export function SoundProvider({ children }) {
     };
   }, [startMusic]);
 
+  // Pause when the tab is hidden/backgrounded/closed; resume automatically
+  // when the visitor returns, unless they explicitly muted it themselves.
+  useEffect(() => {
+    const handleVisibility = () => {
+      const audio = ambientRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) audio.pause();
+      } else {
+        if (audio.paused && !userMutedRef.current && startedRef.current) {
+          audio.play().then(() => setMusicPlaying(true)).catch(() => {});
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    window.addEventListener("pagehide", handleVisibility);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("pagehide", handleVisibility);
+    };
+  }, []);
+
   return (
-    <SoundContext.Provider
-      value={{ play, musicMuted, musicPlaying, toggleMusic, startMusic }}
-    >
+    <SoundContext.Provider value={{ musicMuted, musicPlaying, toggleMusic, startMusic }}>
       {children}
     </SoundContext.Provider>
   );
