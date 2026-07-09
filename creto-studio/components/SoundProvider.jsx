@@ -19,7 +19,7 @@ export function SoundProvider({ children }) {
 
     const audio = new Audio("/sounds/ambient.mp3");
     audio.loop = true;
-    audio.volume = 0.22;
+    audio.volume = 0.30;
     audio.preload = "auto";
     ambientRef.current = audio;
 
