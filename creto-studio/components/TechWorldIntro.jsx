@@ -158,7 +158,6 @@ export default function TechWorldIntro() {
       triggerExit();
     }
     function onTouchStart() {
-      // Some users tap once rather than swipe — give them a way through too
       triggerExit();
     }
     function onKeyDown(e) {
