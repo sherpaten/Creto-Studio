@@ -27,7 +27,7 @@ const capabilities = [
 ];
 
 const inputClasses =
-  "peer w-full rounded-xl bg-[#012468]/40 border border-white/10 px-4 pt-6 pb-2 text-white font-mono text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-[#0185FA] focus:border-transparent transition-all duration-300";
+  "peer w-full rounded-xl bg-[#F8FAFC]/40 border border-white/10 px-4 pt-6 pb-2 text-white font-mono text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-[#0185FA] focus:border-transparent transition-all duration-300";
 
 const labelClasses =
   "absolute left-4 top-4 font-mono text-xs tracking-[0.1em] uppercase text-[#79ABCF]/70 transition-all duration-200 pointer-events-none " +
