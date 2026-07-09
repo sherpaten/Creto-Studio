@@ -3,6 +3,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
 import TechWorldIntro from "@/components/TechWorldIntro";
 import { SoundProvider } from "@/components/SoundProvider";
+import { plusJakarta, inter } from "./fonts";
 
 export const metadata = {
   title: "Creto Studio — Next-Gen Digital Engineering",
@@ -12,10 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${plusJakarta.variable} ${inter.variable}`}>
         <SoundProvider>
           <TechWorldIntro />
-          {<CustomCursor /> }
+          <CustomCursor />
           <ScrollProgress />
           {children}
         </SoundProvider>
