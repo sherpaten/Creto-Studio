@@ -9,8 +9,7 @@ export function SoundProvider({ children }) {
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   const ambientRef = useRef(null);
-  const startedRef = useRef(false);
-  const userMutedRef = useRef(false); // tracks explicit user mute, separate from auto-pause on tab hide
+  const userMutedRef = useRef(false);
 
   useEffect(() => {
     const savedMuted = localStorage.getItem("creto-music-muted");
@@ -19,8 +18,8 @@ export function SoundProvider({ children }) {
     setMusicMuted(wasMuted);
 
     const audio = new Audio("/sounds/ambient.mp3");
-    audio.loop = true; // seamless loop
-    audio.volume = 0.08; // 8%, within your 5-10% target
+    audio.loop = true;
+    audio.volume = 0.08;
     audio.preload = "auto";
     ambientRef.current = audio;
 
@@ -31,18 +30,17 @@ export function SoundProvider({ children }) {
 
   const startMusic = useCallback(() => {
     const audio = ambientRef.current;
-    if (!audio || !audio.paused) return;
-    if (userMutedRef.current) return; // respect an explicit prior mute
+    if (!audio || !audio.paused) return Promise.resolve(true);
+    if (userMutedRef.current) return Promise.resolve(true); // respect prior explicit mute
 
-    audio
+    return audio
       .play()
       .then(() => {
         setMusicPlaying(true);
         setMusicMuted(false);
+        return true;
       })
-      .catch(() => {
-        // Autoplay blocked — will retry on the next interaction automatically
-      });
+      .catch(() => false);
   }, []);
 
   const toggleMusic = useCallback(() => {
@@ -68,37 +66,37 @@ export function SoundProvider({ children }) {
     }
   }, []);
 
-  // Start on the very first interaction anywhere on the page — this lines up
-  // with the moment the user scrolls/clicks/taps to get past TechWorldIntro,
-  // so music begins as close to "automatic" as browsers allow.
+  // Keep retrying on every qualifying gesture (click, keydown, touchend —
+  // the event types browsers actually treat as valid "user activation" for
+  // autoplay) until playback genuinely succeeds. Doesn't give up after one
+  // failed attempt, since a scroll-only visitor's first gesture (wheel)
+  // isn't a valid activation event and would otherwise silently fail forever.
   useEffect(() => {
-    if (startedRef.current) return;
+    let done = false;
 
     const trigger = () => {
-      if (startedRef.current) return;
-      startedRef.current = true;
-      startMusic();
-      window.removeEventListener("pointerdown", trigger);
-      window.removeEventListener("keydown", trigger);
-      window.removeEventListener("wheel", trigger);
-      window.removeEventListener("touchstart", trigger);
+      if (done || userMutedRef.current) return;
+      startMusic().then((ok) => {
+        if (ok) {
+          done = true;
+          window.removeEventListener("click", trigger);
+          window.removeEventListener("keydown", trigger);
+          window.removeEventListener("touchend", trigger);
+        }
+      });
     };
 
-    window.addEventListener("pointerdown", trigger, { passive: true });
+    window.addEventListener("click", trigger);
     window.addEventListener("keydown", trigger);
-    window.addEventListener("wheel", trigger, { passive: true });
-    window.addEventListener("touchstart", trigger, { passive: true });
+    window.addEventListener("touchend", trigger, { passive: true });
 
     return () => {
-      window.removeEventListener("pointerdown", trigger);
+      window.removeEventListener("click", trigger);
       window.removeEventListener("keydown", trigger);
-      window.removeEventListener("wheel", trigger);
-      window.removeEventListener("touchstart", trigger);
+      window.removeEventListener("touchend", trigger);
     };
   }, [startMusic]);
 
-  // Pause when the tab is hidden/backgrounded/closed; resume automatically
-  // when the visitor returns, unless they explicitly muted it themselves.
   useEffect(() => {
     const handleVisibility = () => {
       const audio = ambientRef.current;
@@ -107,20 +105,15 @@ export function SoundProvider({ children }) {
       if (document.hidden) {
         if (!audio.paused) audio.pause();
       } else {
-        if (audio.paused && !userMutedRef.current && startedRef.current) {
-          audio.play().then(() => setMusicPlaying(true)).catch(() => {});
+        if (audio.paused && !userMutedRef.current && musicPlaying) {
+          audio.play().catch(() => {});
         }
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibility);
-    window.addEventListener("pagehide", handleVisibility);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibility);
-      window.removeEventListener("pagehide", handleVisibility);
-    };
-  }, []);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [musicPlaying]);
 
   return (
     <SoundContext.Provider value={{ musicMuted, musicPlaying, toggleMusic, startMusic }}>
