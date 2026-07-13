@@ -4,6 +4,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, ArrowRight, MapPin, Phone, Clock, ChevronRight } from 'lucide-react';
 
+const scrollToSection = (id) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+// Map footer link labels to section IDs
+const sectionMap = {
+  "Web Design": "services",
+  "Branding": "services",
+  "UI/UX Design": "services",
+  "Digital Marketing": "services",
+  "SEO Optimization": "services",
+  "Content Creation": "services",
+  "About Us": "about",
+  "Our Work": "projects",
+  "Careers": null,
+  "Blog": null,
+  "Pricing": null,
+  "Contact Us": "contact",
+  "Case Studies": "projects",
+  "Help Center": null,
+  "Privacy Policy": null,
+  "Terms of Service": null,
+  "FAQ": null,
+  "Support": "contact",
+};
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -72,7 +101,11 @@ export default function Footer() {
               <h4 className="text-white font-bold mb-6">{section.title}</h4>
               <ul className="space-y-4">
                 {section.links.map((link) => (
-                  <li key={link} className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors text-sm">
+                  <li
+                    key={link}
+                    onClick={() => sectionMap[link] && scrollToSection(sectionMap[link])}
+                    className={`flex items-center gap-2 hover:text-white transition-colors text-sm ${sectionMap[link] ? 'cursor-pointer' : 'cursor-default'}`}
+                  >
                     <ChevronRight size={14} /> {link}
                   </li>
                 ))}
@@ -103,7 +136,10 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-2">
             <span>Made with ❤️ in Nepal</span>
-            <button className="bg-[#305CDE] p-2 text-white ml-2 hover:bg-[#254ab5] transition-colors">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="bg-[#305CDE] p-2 text-white ml-2 hover:bg-[#254ab5] transition-colors"
+            >
               <ArrowRight className="rotate-[-90deg]" size={16} />
             </button>
           </div>
