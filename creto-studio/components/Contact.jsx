@@ -68,7 +68,7 @@ export default function Contact() {
               <div className="bg-blue-600 p-3 rounded-xl text-white"><Mail size={24} /></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Official Communication</p>
-                <a href="mailto:idesign4269@gmail.com" className="text-lg font-bold text-[#011032]">info@cretostudio.com</a>
+                <a href="mailto:idesign4269@gmail.com" className="text-lg font-bold text-[#011032]">cretostudio115@gmail.com</a>
               </div>
             </div>
 
@@ -101,8 +101,12 @@ export default function Contact() {
               <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <select name="capability" required className={`${inputClass} appearance-none`} value={form.capability} onChange={(e) => setForm({...form, capability: e.target.value})}>
                 <option value="">Choose a service channel...</option>
-                <option value="Web Design">Web Design</option>
-                <option value="Branding">Branding</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Ui/Ux Design">Ui/Ux Design</option>
+                <option value="E-commerce Solution">E-commerce Solution</option>
+                <option value="Mobile App Engineering">Mobile App Engineering</option>
+                <option value="Video Transformation">Video Transformation</option>
+                <option value="SEO Optimization">SEO Optimization</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
             </div>
