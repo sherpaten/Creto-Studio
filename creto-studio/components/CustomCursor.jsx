@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-// Drop once in layout.js. Hides on touch devices automatically since a
-// custom cursor makes no sense without a mouse.
 export default function CustomCursor() {
   const [isTouch, setIsTouch] = useState(true);
   const [isHovering, setIsHovering] = useState(false);

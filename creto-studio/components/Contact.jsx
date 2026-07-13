@@ -55,7 +55,6 @@ export default function Contact() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
-          {/* Left Column: Content */}
           <motion.div variants={fadeUp}>
             <span className="inline-block rounded-full bg-blue-50 px-4 py-1.5 font-mono text-xs tracking-[0.2em] uppercase text-blue-600 mb-6 border border-blue-100">
               Get in Touch
@@ -83,7 +82,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Column: Form */}
           <motion.form variants={fadeUp} onSubmit={handleSubmit} className="bg-[#0b0e14] rounded-3xl p-10 shadow-2xl border border-gray-800">
             <h2 className="text-2xl font-bold text-white mb-1">SEND US A MESSAGE</h2>
             <p className="text-gray-400 text-sm mb-8">We typically respond within 24 hours.</p>

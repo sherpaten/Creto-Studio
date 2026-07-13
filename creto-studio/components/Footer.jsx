@@ -11,7 +11,6 @@ const scrollToSection = (id) => {
   }
 };
 
-// Map footer link labels to section IDs
 const sectionMap = {
   "Web Design": "services",
   "Branding": "services",
@@ -44,7 +43,6 @@ export default function Footer() {
       viewport={{ once: true }}
       className="w-full bg-[#0b0e14] text-gray-400"
     >
-      {/* Newsletter Section - Full Width, No Radius */}
       <div className="w-full bg-[#305CDE] px-8 py-10 mb-0">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6">
@@ -73,7 +71,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main Footer Content - Full Width container */}
       <div className="w-full border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
@@ -91,7 +88,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Columns */}
           {[
             { title: "Services", links: ["Web Design", "Branding", "UI/UX Design", "Digital Marketing", "SEO Optimization", "Content Creation"] },
             { title: "Company", links: ["About Us", "Our Work", "Careers", "Blog", "Pricing", "Contact Us"] },
@@ -113,7 +109,6 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Contact Column */}
           <div>
             <h4 className="text-white font-bold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-sm">
@@ -126,7 +121,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar - Full Width container */}
       <div className="w-full border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
           <p>&copy; {currentYear} Creto Studio. All rights reserved.</p>
