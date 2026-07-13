@@ -1,12 +1,114 @@
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, ArrowRight, MapPin, Phone, Clock, ChevronRight } from 'lucide-react';
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#305CDE] border-t border-white/10 py-13">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <img src="/logo.png" alt="Creto Studio" className="h-15 sm:h-16 w-auto" />
-        <p className="font-mono text-xs text-white/60">
-          &copy; {new Date().getFullYear()} Creto Studio. All rights reserved.
-        </p>
+    <motion.footer 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full bg-[#0b0e14] text-gray-400"
+    >
+      {/* Newsletter Section - Full Width, No Radius */}
+      <div className="w-full bg-[#305CDE] px-8 py-10 mb-0">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto" />
+            <div>
+              <h3 className="text-white font-bold text-lg">We design. We build. We elevate</h3>
+              <p className="text-white/80 text-sm">brands in the digital world.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4 bg-white/10 p-2 w-full md:w-auto">
+            <Mail className="text-white ml-2" size={20} />
+            <div className="flex flex-col">
+              <span className="text-white text-xs font-semibold">Subscribe to our newsletter</span>
+              <span className="text-white/70 text-[10px]">Stay updated with our latest news</span>
+            </div>
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="bg-transparent border-none outline-none text-white placeholder:text-white/50 text-sm w-full md:w-48"
+            />
+            <button className="bg-black p-2 hover:bg-black/80 transition-colors">
+              <ArrowRight className="text-white" size={18} />
+            </button>
+          </div>
+        </div>
       </div>
-    </footer>
+
+      {/* Main Footer Content - Full Width container */}
+      <div className="w-full border-t border-white/5">
+        <div className="max-w-[1400px] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <img src="/logo.png" alt="Creto Studio" className="h-10 mb-6" />
+            <p className="text-sm leading-relaxed mb-6">
+              Creto Studio is a digital creative agency specializing in branding, web design, and digital experiences that drive real results.
+            </p>
+            <div className="flex gap-3">
+              {['facebook', 'twitter', 'linkedin', 'instagram'].map((social) => (
+                <div key={social} className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:bg-[#305CDE] cursor-pointer transition-colors">
+                  <span className="text-sm uppercase font-bold">{social[0]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Links Columns */}
+          {[
+            { title: "Services", links: ["Web Design", "Branding", "UI/UX Design", "Digital Marketing", "SEO Optimization", "Content Creation"] },
+            { title: "Company", links: ["About Us", "Our Work", "Careers", "Blog", "Pricing", "Contact Us"] },
+            { title: "Resources", links: ["Case Studies", "Help Center", "Privacy Policy", "Terms of Service", "FAQ", "Support"] }
+          ].map((section) => (
+            <div key={section.title}>
+              <h4 className="text-white font-bold mb-6">{section.title}</h4>
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link} className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors text-sm">
+                    <ChevronRight size={14} /> {link}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Contact Column */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Contact Us</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3"><MapPin size={18} /> Kathmandu, Nepal</li>
+              <li className="flex items-center gap-3"><Mail size={18} /> info@cretostudio.com</li>
+              <li className="flex items-center gap-3"><Phone size={18} /> +977 980-1234567</li>
+              <li className="flex items-center gap-3"><Clock size={18} /> Sun - Fri: 9:00 AM - 6:00 PM</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar - Full Width container */}
+      <div className="w-full border-t border-white/5">
+        <div className="max-w-[1400px] mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+          <p>&copy; {currentYear} Creto Studio. All rights reserved.</p>
+          <div className="flex gap-6">
+            <span className="hover:text-white cursor-pointer">Privacy Policy</span>
+            <span className="hover:text-white cursor-pointer">Terms of Service</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>Made with ❤️ in Nepal</span>
+            <button className="bg-[#305CDE] p-2 text-white ml-2 hover:bg-[#254ab5] transition-colors">
+              <ArrowRight className="rotate-[-90deg]" size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.footer>
   );
 }
