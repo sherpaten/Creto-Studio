@@ -167,7 +167,7 @@ export default function Footer() {
               =============================== */}
 
               <a
-                href="https://www.facebook.com/share/1BVzdEJXWx/"
+                href="https://www.facebook.com/profile.php?id=61596185979278"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Creto Studio on Facebook"
