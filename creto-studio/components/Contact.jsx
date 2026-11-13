@@ -68,17 +68,13 @@ export default function Contact() {
               <div className="bg-blue-600 p-3 rounded-xl text-white"><Mail size={24} /></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Official Communication</p>
-                <a href="mailto:idesign4269@gmail.com" className="text-lg font-bold text-[#011032]">cretostudio115@gmail.com</a>
+                <a href="mailto:info@cretostudio.com" className="text-lg font-bold text-[#011032]">info@cretostudio.com</a>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {["Primary", "Secondary"].map((type) => (
-                <div key={type} className="border border-gray-100 rounded-2xl p-4">
-                  <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">{type} Vector</p>
-                  <p className="text-sm font-semibold text-[#011032]">+977 9818778998</p>
-                </div>
-              ))}
+            <div className="border border-gray-100 rounded-2xl p-4">
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Business Phone</p>
+              <a href="tel:+9779801234567" className="text-sm font-semibold text-[#011032]">+977 980-1234567</a>
             </div>
           </motion.div>
 
@@ -102,11 +98,13 @@ export default function Contact() {
               <select name="capability" required className={`${inputClass} appearance-none`} value={form.capability} onChange={(e) => setForm({...form, capability: e.target.value})}>
                 <option value="">Choose a service channel...</option>
                 <option value="Web Development">Web Development</option>
-                <option value="Ui/Ux Design">Ui/Ux Design</option>
-                <option value="E-commerce Solution">E-commerce Solution</option>
-                <option value="Mobile App Engineering">Mobile App Engineering</option>
-                <option value="Video Transformation">Video Transformation</option>
-                <option value="SEO Optimization">SEO Optimization</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="AI & Software Solutions">AI & Software Solutions</option>
+                <option value="Brand Identity">Brand Identity</option>
+                <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
+                <option value="Social Media Management">Social Media Management</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
             </div>
