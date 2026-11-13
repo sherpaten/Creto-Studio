@@ -64,7 +64,7 @@ export default function AIChatWidget() {
       {isOpen && (
         <section
           aria-label="Creto Studio AI chat"
-          className="flex h-[min( min(680px, calc(100dvh - 110px)), 620px)] max-h-[calc(100dvh-110px)] w-[min( calc(100vw - 32px), 390px)] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#06183b] shadow-[0_24px_90px_rgba(0,0,0,0.45)]"
+          className="flex h-[min(620px,calc(100dvh-110px))] max-h-[calc(100dvh-110px)] w-[min(390px,calc(100vw-32px))] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#06183b] shadow-[0_24px_90px_rgba(0,0,0,0.45)]"
         >
           <header className="flex items-center justify-between border-b border-white/10 bg-gradient-to-r from-[#004ACA] to-[#0185FA] px-5 py-4 text-white">
             <div className="flex items-center gap-3">
