@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -20,16 +21,16 @@ body {
   font-weight: 400;
 }
 
-/* ---- Brand gradients (from Creto Studio palette sheet) ---- */
+/* Brand gradients */
 .gradient-primary { background: linear-gradient(135deg, #011032, #004ACA); }
-.gradient-brand    { background: linear-gradient(135deg, #004ACA, #0185FA); }
-.gradient-shine     { background: linear-gradient(135deg, #0185FA, #79ABCF); }
-.gradient-dark       { background: linear-gradient(135deg, #012468, #011032); }
-.gradient-vibrant  { background: linear-gradient(135deg, #004ACA, #6AA8FF); }
+.gradient-brand { background: linear-gradient(135deg, #004ACA, #0185FA); }
+.gradient-shine { background: linear-gradient(135deg, #0185FA, #79ABCF); }
+.gradient-dark { background: linear-gradient(135deg, #012468, #011032); }
+.gradient-vibrant { background: linear-gradient(135deg, #004ACA, #6AA8FF); }
 
 @keyframes pulse-slow {
   0%, 100% { transform: scale(1) translateY(0px); opacity: 0.55; }
-  50%      { transform: scale(1.12) translateY(-18px); opacity: 0.75; }
+  50% { transform: scale(1.12) translateY(-18px); opacity: 0.75; }
 }
 
 .animate-pulse-slow {
@@ -38,9 +39,24 @@ body {
 
 @keyframes float-y {
   0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-24px); }
+  50% { transform: translateY(-24px); }
 }
 
 .animate-float {
   animation: float-y 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
