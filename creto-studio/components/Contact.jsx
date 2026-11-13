@@ -68,17 +68,13 @@ export default function Contact() {
               <div className="bg-blue-600 p-3 rounded-xl text-white"><Mail size={24} /></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Official Communication</p>
-                <a href="mailto:idesign4269@gmail.com" className="text-lg font-bold text-[#011032]">cretostudio115@gmail.com</a>
+                <a href="mailto:info@cretostudio.com" className="text-lg font-bold text-[#011032]">info@cretostudio.com</a>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {["Primary", "Secondary"].map((type) => (
-                <div key={type} className="border border-gray-100 rounded-2xl p-4">
-                  <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">{type} Vector</p>
-                  <p className="text-sm font-semibold text-[#011032]">+977 9818778998</p>
-                </div>
-              ))}
+            <div className="border border-gray-100 rounded-2xl p-4">
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Business Phone</p>
+              <a href="tel:+9779801234567" className="text-sm font-semibold text-[#011032]">+977 980-1234567</a>
             </div>
           </motion.div>
 
