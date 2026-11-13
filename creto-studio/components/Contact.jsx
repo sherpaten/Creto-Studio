@@ -102,11 +102,13 @@ export default function Contact() {
               <select name="capability" required className={`${inputClass} appearance-none`} value={form.capability} onChange={(e) => setForm({...form, capability: e.target.value})}>
                 <option value="">Choose a service channel...</option>
                 <option value="Web Development">Web Development</option>
-                <option value="Ui/Ux Design">Ui/Ux Design</option>
-                <option value="E-commerce Solution">E-commerce Solution</option>
-                <option value="Mobile App Engineering">Mobile App Engineering</option>
-                <option value="Video Transformation">Video Transformation</option>
-                <option value="SEO Optimization">SEO Optimization</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="AI & Software Solutions">AI & Software Solutions</option>
+                <option value="Brand Identity">Brand Identity</option>
+                <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
+                <option value="Social Media Management">Social Media Management</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
             </div>
