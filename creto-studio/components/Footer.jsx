@@ -22,12 +22,14 @@ const scrollToSection = (id) => {
 };
 
 const sectionMap = {
-  "Web Design": "services",
-  Branding: "services",
+  "Web Development": "services",
+  "Mobile App Development": "services",
+  "E-Commerce Solutions": "services",
   "UI/UX Design": "services",
-  "Digital Marketing": "services",
-  "SEO Optimization": "services",
-  "Content Creation": "services",
+  "AI & Software Solutions": "services",
+  "Brand Identity": "services",
+  "SEO & Digital Marketing": "services",
+  "Social Media Management": "services",
 
   "About Us": "about",
   "Our Work": "projects",
@@ -368,12 +370,14 @@ export default function Footer() {
             <ul className="space-y-4">
 
               {[
-                "Web Design",
-                "Branding",
+                "Web Development",
+                "Mobile App Development",
+                "E-Commerce Solutions",
                 "UI/UX Design",
-                "Digital Marketing",
-                "SEO Optimization",
-                "Content Creation",
+                "AI & Software Solutions",
+                "Brand Identity",
+                "SEO & Digital Marketing",
+                "Social Media Management",
               ].map((link) => (
                 <li
                   key={link}
