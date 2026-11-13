@@ -1,5 +1,6 @@
 import "./globals.css";
 import ScrollProgress from "@/components/ScrollProgress";
+import CretoChatbot from "@/components/CretoChatbot";
 import CustomCursor from "@/components/CustomCursor";
 import TechWorldIntro from "@/components/TechWorldIntro";
 import { SoundProvider } from "@/components/SoundProvider";
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
           <TechWorldIntro />
           <CustomCursor />
           <ScrollProgress />
+          <CretoChatbot />
           {children}
         </SoundProvider>
       </body>
