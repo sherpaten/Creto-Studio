@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import ServicesGrid from "../components/ServicesGrid";
 import VisualShowcase from "../components/VisualShowcase";
 import Projects from "../components/Projects";
+import Process from "../components/Process";
 import MarketingFooter from "../components/MarketingFooter";
 
 export const metadata = {
@@ -35,7 +36,14 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#04132D]">
       <Navbar />
-      <main><Hero /><ServicesGrid /><VisualShowcase /><Projects /><HomeCallout /></main>
+      <main>
+        <Hero />
+        <ServicesGrid />
+        <VisualShowcase />
+        <Projects />
+        <Process />
+        <HomeCallout />
+      </main>
       <MarketingFooter />
     </div>
   );
