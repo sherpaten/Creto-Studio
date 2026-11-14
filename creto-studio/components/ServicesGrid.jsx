@@ -107,7 +107,7 @@ export default function ServicesGrid() {
 
         <motion.div variants={fadeUp} className="text-center mt-10 sm:mt-12">
           <a
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-white font-mono text-sm hover:bg-white/10 transition-colors"
           >
             Talk through your project <span aria-hidden="true">→</span>
