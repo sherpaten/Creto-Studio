@@ -26,8 +26,8 @@ export default function About() {
   const philosophy = [
     {
       n: "01",
-      t: "Meaning",
-      d: "We chose the name Creto from the Latin idea of natural, compounding growth. Software shouldn't just solve today's problems — it should become a foundation that evolves with tomorrow's opportunities.",
+      t: "Purpose",
+      d: "We believe digital products should create lasting value. The work should solve a real need today while giving your organisation a flexible foundation for what comes next.",
     },
     {
       n: "02",
