@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 
 const socials = [
@@ -24,7 +25,7 @@ export default function MarketingFooter() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/">
-            <img src="/logo.png" alt="Creto Studio" className="mb-6 h-12 w-auto rounded bg-white p-1" />
+            <Image src="/logo.png" alt="Creto Studio" width={144} height={96} sizes="144px" className="mb-6 h-12 w-auto rounded bg-white p-1" />
           </Link>
           <p className="max-w-sm text-sm leading-7 text-blue-100/70">
             We design and build thoughtful digital products that help ambitious businesses move forward.
