@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
@@ -19,6 +21,14 @@ const wordVariants = {
 };
 
 export default function Hero() {
+  const [showHero3D, setShowHero3D] = useState(false);
+  useEffect(() => {
+    const update = () => setShowHero3D(window.innerWidth >= 1024);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#04132D] pt-24 sm:pt-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_18%,rgba(0,91,220,.30),transparent_45%),radial-gradient(ellipse_at_85%_72%,rgba(0,190,255,.12),transparent_38%),linear-gradient(120deg,#04132D_0%,#061D46_58%,#03112A_100%)]" />
@@ -26,7 +36,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-[#0759D6]/20 blur-[100px]" />
       <div className="pointer-events-none absolute right-[-10rem] top-1/4 h-[34rem] w-[34rem] rounded-full border border-[#20A8FF]/20 bg-[radial-gradient(circle,rgba(0,119,255,.13),transparent_68%)]" />
       <div className="pointer-events-none absolute right-[-6rem] top-[18%] h-[30rem] w-[30rem] opacity-60 sm:right-[1%] lg:right-[3%]">
-        <Hero3D className="h-full w-full" />
+        {showHero3D && <Hero3D className="h-full w-full" />}
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
@@ -66,7 +76,7 @@ export default function Hero() {
           <div className="absolute h-[290px] w-[290px] rounded-full border border-dashed border-[#54C7FF]/30" />
           <div className="absolute h-[220px] w-[220px] rounded-full bg-gradient-to-br from-[#0878E8]/25 to-[#13D4F5]/10 blur-2xl" />
           <div className="relative flex h-52 w-52 items-center justify-center rounded-[2.5rem] border border-[#62CFFF]/30 bg-gradient-to-br from-[#0C4EAA]/55 via-[#061E48]/90 to-[#04132D]/90 shadow-[0_30px_100px_rgba(0,120,255,.25)] backdrop-blur-xl">
-            <img src="/logo.png" alt="Creto Studio logo" className="w-40 rounded-xl bg-white p-2 shadow-2xl" />
+            <Image src="/logo.png" alt="Creto Studio logo" width={160} height={107} sizes="160px" priority className="w-40 rounded-xl bg-white p-2 shadow-2xl" />
             <span className="absolute -right-7 top-7 h-3 w-3 rounded-full bg-[#17C7FF] shadow-[0_0_24px_#17C7FF]" />
             <span className="absolute -bottom-4 left-8 h-2 w-2 rounded-full bg-[#0878E8] shadow-[0_0_20px_#0878E8]" />
           </div>
