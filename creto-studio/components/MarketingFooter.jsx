@@ -67,7 +67,7 @@ export default function MarketingFooter() {
             <Link href="/about" className="hover:text-white">About us</Link>
             <Link href="/services" className="hover:text-white">Services</Link>
             <Link href="/projects" className="hover:text-white">Projects</Link>
-            <Link href="/process" className="hover:text-white">Our process</Link>
+            <Link href="/#process" className="hover:text-white">Our process</Link>
             <Link href="/team" className="hover:text-white">Our team</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>
           </div>
