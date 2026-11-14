@@ -33,7 +33,7 @@ const services = [
     icon: ShoppingCart,
     title: "E-Commerce Solutions",
     desc: "Online stores, product experiences, payments, and ordering workflows designed to convert.",
-    image: "https://images.unsplash.com/photo-155674녕하세요?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
     imageAlt: "Online shopping and digital commerce workspace",
   },
 ];
