@@ -2,11 +2,9 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useSound } from "./SoundProvider";
 
 export default function TiltCard({ children, className = "" }) {
   const ref = useRef(null);
-  const { play } = useSound();
   const [style, setStyle] = useState({ rotateX: 0, rotateY: 0 });
 
   function handleMouseMove(e) {
@@ -23,10 +21,6 @@ export default function TiltCard({ children, className = "" }) {
     setStyle({ rotateX, rotateY });
   }
 
-  function handleMouseEnter() {
-    play("hover");
-  }
-
   function handleMouseLeave() {
     setStyle({ rotateX: 0, rotateY: 0 });
   }
@@ -35,7 +29,6 @@ export default function TiltCard({ children, className = "" }) {
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       animate={{ rotateX: style.rotateX, rotateY: style.rotateY }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
