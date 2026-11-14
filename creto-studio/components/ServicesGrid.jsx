@@ -25,7 +25,7 @@ const services = [
     icon: Smartphone,
     title: "Mobile App Development",
     desc: "Thoughtful Android, iOS, and cross-platform experiences that keep customers connected.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=85",
     imageAlt: "Smartphone displaying a mobile application",
   },
   {
