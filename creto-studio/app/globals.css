@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; --creto-bg: #050B18; --creto-surface: #0A1428; --creto-panel: #0E1D36; --creto-blue: #0878E8; --creto-cyan: #20B9FF; }
+:root {
+  color-scheme: dark;
+  font-size: 18px;
+  --creto-bg: #050B18;
+  --creto-surface: #0A1428;
+  --creto-panel: #0E1D36;
+  --creto-blue: #0878E8;
+  --creto-cyan: #20B9FF;
+}
 html { scroll-behavior: smooth; scroll-padding-top: 6rem; background: var(--creto-bg); }
-body { background: var(--creto-bg); color: #F4F8FF; }
+body { background: var(--creto-bg); color: #F4F8FF; font-size: 1rem; }
 ::selection { background: rgba(32,185,255,.32); color: #fff; }
 .font-display { font-family: var(--font-heading), "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif; font-weight: 700; }
 .font-mono { font-family: var(--font-body), "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif; font-weight: 400; }
