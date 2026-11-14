@@ -4,6 +4,7 @@ import CustomCursor from "@/components/CustomCursor";
 import TechWorldIntro from "@/components/TechWorldIntro";
 import { SoundProvider } from "@/components/SoundProvider";
 import { plusJakarta, inter } from "./fonts";
+import AIChatWidget from "@/components/AIChatWidget";
 
 export const metadata = {
   metadataBase: new URL("https://cretostudio.com"),
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
           <CustomCursor />
           <ScrollProgress />
           {children}
+          <AIChatWidget />
         </SoundProvider>
       </body>
     </html>
