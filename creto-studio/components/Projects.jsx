@@ -64,12 +64,12 @@ function ProjectCard({ project }) {
           <p className="mb-2 text-[10px] font-bold uppercase tracking-[.2em] text-[#6DCBFF]">{project.category}</p>
           <div className="flex items-start justify-between gap-3"><h3 className="text-xl font-bold text-white">{project.title}</h3>{project.url ? <ExternalLink size={18} className="mt-1 shrink-0 text-[#65C9FF] transition group-hover:-translate-y-1 group-hover:translate-x-1" /> : <ArrowUpRight size={19} className="mt-1 shrink-0 text-[#65C9FF] transition group-hover:-translate-y-1 group-hover:translate-x-1" />}</div>
           <p className="mt-3 text-sm leading-7 text-blue-100/70">{project.summary}</p>
-          <div className="mt-5 border-t border-white/10 pt-5">
+          {detailed && <div className="mt-5 border-t border-white/10 pt-5">
             <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#8DD8FF]">Project focus</p>
             <ul className="mt-3 grid gap-2">
               {project.scope.map((item) => <li key={item} className="flex items-start gap-2 text-xs leading-6 text-blue-100/65"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#65C9FF]" />{item}</li>)}
             </ul>
-          </div>
+          </div>}
           <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#81D4FF]">{project.action || "Discuss a similar project"} <span aria-hidden="true">→</span></span>
         </div>
       </Link>
@@ -77,7 +77,7 @@ function ProjectCard({ project }) {
   );
 }
 
-export default function Projects() {
+export default function Projects({ detailed = false }) {
   return (
     <section id="projects" className="relative overflow-hidden bg-[#061A3B] py-24 sm:py-32">
       <div className="pointer-events-none absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-[#0759D6]/15 blur-[100px]" />
@@ -89,14 +89,14 @@ export default function Projects() {
           <p className="mt-5 max-w-2xl text-base leading-8 text-blue-100/70 sm:text-lg">A selection of digital experiences across community, education, local services and commerce. Each brief brings a different audience and challenge, so we shape the structure, content and technology around what the project needs.</p>
         </motion.div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 sm:gap-8">{projects.map((project) => <ProjectCard key={project.title} project={project} />)}</div>
-        <motion.div variants={fadeUp} className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-white/10 bg-white/[.04] p-7 sm:flex-row sm:items-center sm:p-9">
+        {detailed && <motion.div variants={fadeUp} className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-white/10 bg-white/[.04] p-7 sm:flex-row sm:items-center sm:p-9">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6DCBFF]">Your project, next</p>
             <h3 className="mt-3 text-2xl font-bold text-white">A different challenge deserves a considered solution.</h3>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-blue-100/65">Tell us what you want to achieve. We can help define the right experience, scope and next steps for your organisation.</p>
           </div>
           <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0759D6] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0878E8]">Discuss a project <ArrowUpRight size={16} /></Link>
-        </motion.div>
+        </motion.div>}
       </motion.div>
     </section>
   );
