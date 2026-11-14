@@ -26,7 +26,7 @@ export default function ProjectsPage() {
         description="Explore a selection of digital work and project examples across community, education, local services and commerce. Each project starts with a different goal, audience and set of practical needs."
       />
       <main>
-        <Projects />
+        <Projects detailed />
         <section className="bg-[#050B18] py-20 sm:py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-3xl">
