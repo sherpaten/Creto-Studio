@@ -31,7 +31,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-white/[.08] bg-[#050B18]/90 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_40px_rgba(0,0,0,.35)]" : ""}`}>
+    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#E7E2D8] bg-[#F7F4EC]/95 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
       <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link href="/" aria-label="Creto Studio home" onClick={() => setOpen(false)} className="shrink-0">
           <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto object-contain" />
@@ -39,13 +39,13 @@ export default function Navbar() {
         <div className="hidden items-center gap-6 xl:flex">
           {links.map((link) => {
             const active = pathname === link.href || (link.href === "/services" && pathname.startsWith("/services/"));
-            return <Link key={link.href} href={link.href} className={`text-sm font-semibold transition-colors ${active ? "text-[#64C9FF]" : "text-slate-300 hover:text-white"}`}>{link.label}</Link>;
+            return <Link key={link.href} href={link.href} className={`text-sm font-semibold transition-colors ${active ? "text-[#0759D6]" : "text-[#26354A] hover:text-[#0759D6]"}`}>{link.label}</Link>;
           })}
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={toggleMusic} aria-label={musicMuted ? "Play background music" : "Pause background music"} className="text-slate-300 transition hover:text-[#64C9FF]">{musicMuted ? <Music2 size={19} /> : <Music size={19} />}</button>
+          <button onClick={toggleMusic} aria-label={musicMuted ? "Play background music" : "Pause background music"} className="text-[#26354A] transition hover:text-[#0759D6]">{musicMuted ? <Music2 size={19} /> : <Music size={19} />}</button>
           <MagneticButton><Link href="/contact" className="hidden rounded-full border border-[#3AB8FF]/30 bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_28px_rgba(7,89,214,.28)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_34px_rgba(32,185,255,.25)] lg:inline-flex">Start a project <span className="ml-2">↗</span></Link></MagneticButton>
-          <button onClick={() => setOpen(true)} aria-label="Open navigation" className="rounded-lg p-2 text-white xl:hidden"><Menu size={25} /></button>
+          <button onClick={() => setOpen(true)} aria-label="Open navigation" className="rounded-lg p-2 text-[#17243A] xl:hidden"><Menu size={25} /></button>
         </div>
       </nav>
       <AnimatePresence>
