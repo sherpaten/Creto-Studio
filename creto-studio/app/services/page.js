@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Code2, ShoppingBag, Smartphone, PanelsTopLeft, BrainCircuit, Search, Share2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import MarketingHero from "@/components/MarketingHero";
+import PageIntro from "@/components/PageIntro";
 import MarketingFooter from "@/components/MarketingFooter";
 
 export const metadata = {
@@ -65,14 +65,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#050B18]">
       <Navbar />
-      <MarketingHero
-        eyebrow="WHAT WE DO"
-        title="Everything you need to"
-        accent="move your business forward."
-        description="One connected team for strategy, design, development and digital growth. Explore the capabilities that can help turn your next idea into a real product."
-        image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=85"
-        imageAlt="Team planning digital products and software together"
-      />
+      <PageIntro eyebrow="WHAT WE DO" title="Everything you need to" accent="move your business forward." description="One connected team for strategy, design, development and digital growth. Explore the capabilities that can help turn your next idea into a real product." />
       <main className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-12 max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">Our capabilities</p>
