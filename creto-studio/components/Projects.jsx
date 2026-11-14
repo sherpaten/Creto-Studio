@@ -47,7 +47,7 @@ const projects = [
   },
 ];
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, detailed }) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const destination = project.url || "/contact";
@@ -88,7 +88,7 @@ export default function Projects({ detailed = false }) {
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">Ideas made tangible.</h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-blue-100/70 sm:text-lg">A selection of digital experiences across community, education, local services and commerce. Each brief brings a different audience and challenge, so we shape the structure, content and technology around what the project needs.</p>
         </motion.div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 sm:gap-8">{projects.map((project) => <ProjectCard key={project.title} project={project} />)}</div>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 sm:gap-8">{projects.map((project) => <ProjectCard key={project.title} project={project} detailed={detailed} />)}</div>
         {detailed && <motion.div variants={fadeUp} className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-white/10 bg-white/[.04] p-7 sm:flex-row sm:items-center sm:p-9">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6DCBFF]">Your project, next</p>
