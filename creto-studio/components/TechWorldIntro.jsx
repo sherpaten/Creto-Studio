@@ -82,7 +82,7 @@ export default function TechWorldIntro() {
             alt="Creto Studio"
             width={176}
             height={176}
-            priority
+            loading="lazy"
             sizes="176px"
             className="mb-6 h-36 w-36 object-contain opacity-100 sm:mb-8 sm:h-44 sm:w-44"
           />
