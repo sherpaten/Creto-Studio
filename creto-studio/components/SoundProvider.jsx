@@ -28,21 +28,6 @@ export function SoundProvider({ children }) {
     };
   }, []);
 
-  const startMusic = useCallback(() => {
-    const audio = ambientRef.current;
-    if (!audio || !audio.paused) return Promise.resolve(true);
-    if (userMutedRef.current) return Promise.resolve(true); // respect prior explicit mute
-
-    return audio
-      .play()
-      .then(() => {
-        setMusicPlaying(true);
-        setMusicMuted(false);
-        return true;
-      })
-      .catch(() => false);
-  }, []);
-
   const toggleMusic = useCallback(() => {
     const audio = ambientRef.current;
     if (!audio) return;
