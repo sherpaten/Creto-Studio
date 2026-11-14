@@ -15,6 +15,9 @@ const welcome = {
   content: "Hi! Welcome to Creto Studio. I'm the Creto AI assistant. I can help you explore our services, discuss your project, and find the right next step. What are you looking to build?",
 };
 
+const whatsappUrl =
+  "https://wa.me/9779747457986?text=Hi%20Creto%20Studio%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.";
+
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([welcome]);
@@ -134,13 +137,26 @@ export default function AIChatWidget() {
             </div>
             <div className="flex items-center justify-between px-1 pt-2 text-[10px] text-slate-400">
               <span>AI responses may occasionally be inaccurate.</span>
-              <a href="https://wa.me/9779747457986" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sky-300 hover:text-white">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sky-300 hover:text-white">
                 WhatsApp us <ArrowUpRight size={11} />
               </a>
             </div>
           </form>
         </section>
       )}
+
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Creto Studio on WhatsApp"
+        className="group flex items-center gap-2 rounded-full border border-white/20 bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,211,102,0.3)] transition duration-300 hover:-translate-y-1 hover:bg-[#1fbd5b] hover:shadow-[0_14px_38px_rgba(37,211,102,0.4)] focus:outline-none focus:ring-4 focus:ring-green-300/40"
+      >
+        <svg viewBox="0 0 32 32" aria-hidden="true" className="h-6 w-6 fill-current">
+          <path d="M16.04 3C8.88 3 3.05 8.82 3.05 15.98c0 2.29.6 4.52 1.74 6.5L3 29l6.68-1.75a12.95 12.95 0 0 0 6.36 1.66h.01c7.16 0 12.98-5.82 12.99-12.98A12.9 12.9 0 0 0 25.23 6.7 12.9 12.9 0 0 0 16.04 3Zm0 23.72h-.01a10.75 10.75 0 0 1-5.48-1.5l-.39-.23-3.96 1.04 1.06-3.86-.25-.4a10.73 10.73 0 1 1 9.03 4.95Zm5.89-8.04c-.32-.16-1.88-.93-2.17-1.04-.29-.1-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.6-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.15-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.14-1.51.27-.74.27-1.38.19-1.51-.08-.13-.29-.21-.61-.37Z" />
+        </svg>
+        <span>WhatsApp us</span>
+      </a>
 
       <button
         onClick={() => setIsOpen((open) => !open)}
