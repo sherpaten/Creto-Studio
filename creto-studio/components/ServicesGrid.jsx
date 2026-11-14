@@ -17,7 +17,7 @@ const services = [
     icon: Code2,
     title: "Web Development",
     desc: "Fast, responsive business websites and custom web applications built around your goals.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
     imageAlt: "Developer workspace with a laptop and code",
   },
   {
@@ -25,7 +25,7 @@ const services = [
     icon: Smartphone,
     title: "Mobile App Development",
     desc: "Thoughtful Android, iOS, and cross-platform experiences that keep customers connected.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=85",
     imageAlt: "Smartphone displaying a mobile application",
   },
   {
