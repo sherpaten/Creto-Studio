@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import PageIntro from "@/components/PageIntro";
 import Team from "@/components/Team";
