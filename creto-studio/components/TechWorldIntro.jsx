@@ -1,214 +1,67 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import * as THREE from "three";
-import { useSound } from "./SoundProvider";
-
-const IS_MOBILE_WIDTH = 640;
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function TechWorldIntro() {
-  const mountRef = useRef(null);
+  const [stage, setStage] = useState("particles");
   const [exiting, setExiting] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [stage, setStage] = useState("particles"); // particles -> logo -> text -> scroll
-  const stateRef = useRef({ scattering: false });
-  const { startMusic } = useSound();
 
   useEffect(() => {
-    const t1 = setTimeout(() => setStage("logo"), 900);
-    const t2 = setTimeout(() => setStage("text"), 2000);
-    const t3 = setTimeout(() => setStage("scroll"), 2900);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, []);
+    // Skip the full-screen intro on phones so the actual page is immediately
+    // visible and no animation delays the mobile Largest Contentful Paint.
+    if (window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches) {
+      setHidden(true);
+      return;
+    }
 
-  useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    const prevOverflow = document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Lower particle density on small screens for performance
-    const isMobile = window.innerWidth < IS_MOBILE_WIDTH;
-    const STRAND_COUNT = isMobile ? 20 : 40;
-    const POINTS_PER_STRAND = isMobile ? 35 : 60;
-    const TOTAL_POINTS = STRAND_COUNT * POINTS_PER_STRAND;
+    const timers = [
+      window.setTimeout(() => setStage("logo"), 500),
+      window.setTimeout(() => setStage("text"), 1300),
+      window.setTimeout(() => setStage("scroll"), 1900),
+    ];
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      55,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
-    );
-    camera.position.z = 9;
+    let completed = false;
+    let exitTimer;
+    let hideTimer;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
-    mount.appendChild(renderer.domElement);
-
-    const positions = new Float32Array(TOTAL_POINTS * 3);
-    const basePositions = new Float32Array(TOTAL_POINTS * 3);
-    const scatterVel = new Float32Array(TOTAL_POINTS * 3);
-    const strandSeed = new Float32Array(STRAND_COUNT);
-
-    let idx = 0;
-    for (let s = 0; s < STRAND_COUNT; s++) {
-      strandSeed[s] = Math.random() * Math.PI * 2;
-      const radius = 2.2 + Math.random() * 1.6;
-      const angle = (s / STRAND_COUNT) * Math.PI * 2;
-      const cx = Math.cos(angle) * radius * 0.6;
-      const cy = (Math.random() - 0.5) * 3;
-      const cz = Math.sin(angle) * radius * 0.6;
-
-      for (let p = 0; p < POINTS_PER_STRAND; p++) {
-        const t = p / POINTS_PER_STRAND;
-        const x = cx + Math.sin(t * 4 + strandSeed[s]) * 0.4;
-        const y = cy + (t - 0.5) * 4;
-        const z = cz + Math.cos(t * 4 + strandSeed[s]) * 0.4;
-
-        positions[idx * 3] = x;
-        positions[idx * 3 + 1] = y;
-        positions[idx * 3 + 2] = z;
-        basePositions[idx * 3] = x;
-        basePositions[idx * 3 + 1] = y;
-        basePositions[idx * 3 + 2] = z;
-
-        const dir = new THREE.Vector3(x, y, z).normalize();
-        scatterVel[idx * 3] = dir.x * (2 + Math.random() * 3);
-        scatterVel[idx * 3 + 1] = dir.y * (2 + Math.random() * 3) + (Math.random() - 0.5) * 2;
-        scatterVel[idx * 3 + 2] = dir.z * (2 + Math.random() * 3);
-
-        idx++;
-      }
-    }
-
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: isMobile ? 0.045 : 0.035,
-      color: 0x9fd1ff,
-      transparent: true,
-      opacity: 0.85,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-
-    const points = new THREE.Points(geometry, material);
-    scene.add(points);
-
-    const clock = new THREE.Clock();
-    let scatterElapsed = 0;
-    let frameId;
-
-    function animate() {
-      frameId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
-      const posAttr = geometry.attributes.position;
-
-      if (!stateRef.current.scattering) {
-        for (let i = 0; i < TOTAL_POINTS; i++) {
-          const bx = basePositions[i * 3];
-          const by = basePositions[i * 3 + 1];
-          const bz = basePositions[i * 3 + 2];
-          posAttr.array[i * 3] = bx + Math.sin(t * 0.6 + i * 0.05) * 0.15;
-          posAttr.array[i * 3 + 1] = by + Math.cos(t * 0.5 + i * 0.04) * 0.1;
-          posAttr.array[i * 3 + 2] = bz + Math.sin(t * 0.4 + i * 0.06) * 0.15;
-        }
-        points.rotation.y = t * 0.15;
-      } else {
-        scatterElapsed += clock.getDelta();
-        const ease = Math.min(scatterElapsed / 1.4, 1);
-        for (let i = 0; i < TOTAL_POINTS; i++) {
-          posAttr.array[i * 3] = basePositions[i * 3] + scatterVel[i * 3] * ease * ease;
-          posAttr.array[i * 3 + 1] =
-            basePositions[i * 3 + 1] + scatterVel[i * 3 + 1] * ease * ease;
-          posAttr.array[i * 3 + 2] =
-            basePositions[i * 3 + 2] + scatterVel[i * 3 + 2] * ease * ease;
-        }
-        material.opacity = 0.85 * (1 - ease);
-        points.rotation.y += 0.01;
-      }
-
-      posAttr.needsUpdate = true;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    function handleResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-    window.addEventListener("resize", handleResize);
-
-    function onWheel(e) {
-      e.preventDefault();
-      triggerExit();
-    }
-    function onTouchMove(e) {
-      e.preventDefault();
-      triggerExit();
-    }
-    function onTouchStart() {
-      triggerExit();
-    }
-    function onKeyDown(e) {
-      if (["ArrowDown", "PageDown", " ", "Enter"].includes(e.key)) triggerExit();
-    }
-    function onClick() {
-      triggerExit();
-    }
-
-    function triggerExit() {
-      if (stateRef.current.scattering) return;
-      stateRef.current.scattering = true;
+    const triggerExit = () => {
+      if (completed) return;
+      completed = true;
       setExiting(true);
-      startMusic(); // start ambient music on the same gesture that exits the intro
-
       window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchstart", triggerExit);
       window.removeEventListener("keydown", onKeyDown);
-      mount.removeEventListener("click", onClick);
+      window.removeEventListener("click", triggerExit);
+      exitTimer = window.setTimeout(() => {
+        document.body.style.overflow = previousOverflow || "";
+      }, 250);
+      hideTimer = window.setTimeout(() => setHidden(true), 650);
+    };
 
-      setTimeout(() => {
-        document.body.style.overflow = prevOverflow || "";
-      }, 300);
+    const onWheel = () => triggerExit();
+    const onKeyDown = (event) => {
+      if (["ArrowDown", "PageDown", " ", "Enter"].includes(event.key)) triggerExit();
+    };
 
-      setTimeout(() => {
-        setHidden(true);
-      }, 1600);
-    }
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("touchstart", triggerExit, { passive: true });
     window.addEventListener("keydown", onKeyDown);
-    mount.addEventListener("click", onClick);
+    window.addEventListener("click", triggerExit);
 
     return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", handleResize);
+      timers.forEach(window.clearTimeout);
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(hideTimer);
       window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchstart", triggerExit);
       window.removeEventListener("keydown", onKeyDown);
-      mount.removeEventListener("click", onClick);
-      document.body.style.overflow = prevOverflow || "";
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-      if (mount.contains(renderer.domElement)) {
-        mount.removeChild(renderer.domElement);
-      }
+      window.removeEventListener("click", triggerExit);
+      document.body.style.overflow = previousOverflow || "";
     };
   }, []);
 
@@ -216,71 +69,45 @@ export default function TechWorldIntro() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-[#011032] flex flex-col items-center justify-center transition-opacity duration-700 ${
-        exiting ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+      aria-label="Welcome to Creto Studio"
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#011032] transition-opacity duration-500 ${exiting ? "pointer-events-none opacity-0" : "opacity-100"}`}
     >
-      <div ref={mountRef} className="absolute inset-0" />
-
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <AnimatePresence>
-          {(stage === "logo" || stage === "text" || stage === "scroll") && (
-            <motion.img
-              key="logo"
-              src="/logo.png"
-              alt="Creto Studio"
-              initial={{ opacity: 0, scale: 0.4, filter: "blur(20px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 1.1, ease: "easeOut" }}
-              className="w-36 h-36 sm:w-44 sm:h-44 object-contain mb-6 sm:mb-8"
-            />
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {(stage === "text" || stage === "scroll") && (
-            <motion.div
-              key="text"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <p className="font-mono text-[10px] sm:text-sm tracking-[0.3em] sm:tracking-[0.35em] uppercase text-[#9FD1FF] mb-2 sm:mb-3">
-                Welcome to
-              </p>
-              <h1 className="font-display text-2xl sm:text-6xl font-bold text-white mb-8 sm:mb-10 leading-tight px-4">
-                Creto Studio Tech World
-              </h1>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {stage === "scroll" && (
-            <motion.div
-              key="scroll-cue"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center gap-2 animate-bounce"
-            >
-              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#9FD1FF]">
-                Scroll or tap to explore
-              </span>
-              <svg
-                width="18"
-                height="24"
-                viewBox="0 0 20 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="sm:w-5 sm:h-7"
-              >
-                <rect x="1" y="1" width="18" height="26" rx="9" stroke="#9FD1FF" strokeWidth="1.5" />
-                <circle cx="10" cy="8" r="2.5" fill="#9FD1FF" />
-              </svg>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(0,119,255,.28),transparent_42%),radial-gradient(ellipse_at_15%_20%,rgba(32,185,255,.15),transparent_35%),linear-gradient(135deg,#011032,#041a40_55%,#010b20)]" />
+      <div className="pointer-events-none absolute h-[min(70vw,32rem)] w-[min(70vw,32rem)] rounded-full border border-[#35B9FF]/20 shadow-[0_0_100px_rgba(0,119,255,.15)]" />
+      <div className="pointer-events-none absolute h-[min(52vw,24rem)] w-[min(52vw,24rem)] rounded-full border border-dashed border-[#54C7FF]/25 animate-[spin_50s_linear_infinite]" />
+      <div className="relative z-10 flex flex-col items-center px-6 text-center">
+        {(stage === "logo" || stage === "text" || stage === "scroll") && (
+          <Image
+            src="/logo.png"
+            alt="Creto Studio"
+            width={176}
+            height={176}
+            priority
+            sizes="176px"
+            className="mb-6 h-36 w-36 object-contain opacity-100 sm:mb-8 sm:h-44 sm:w-44"
+          />
+        )}
+        {(stage === "text" || stage === "scroll") && (
+          <div className="animate-[fade-in-up_.7s_ease-out_both]">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[.35em] text-[#9FD1FF]">
+              Welcome to
+            </p>
+            <h1 className="mb-8 px-4 font-display text-3xl font-semibold leading-tight text-white sm:mb-10 sm:text-6xl">
+              Creto Studio Tech World
+            </h1>
+          </div>
+        )}
+        {stage === "scroll" && (
+          <div className="flex animate-bounce flex-col items-center gap-2">
+            <span className="font-mono text-xs uppercase tracking-[.2em] text-[#9FD1FF]">
+              Scroll or tap to explore
+            </span>
+            <svg width="18" height="24" viewBox="0 0 20 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="18" height="26" rx="9" stroke="#9FD1FF" strokeWidth="1.5" />
+              <circle cx="10" cy="8" r="2.5" fill="#9FD1FF" />
+            </svg>
+          </div>
+        )}
       </div>
     </div>
   );
