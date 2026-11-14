@@ -17,7 +17,7 @@ const services = [
     icon: Code2,
     title: "Web Development",
     desc: "Fast, responsive business websites and custom web applications built around your goals.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=700&q=70",
     imageAlt: "Developer workspace with a laptop and code",
   },
   {
