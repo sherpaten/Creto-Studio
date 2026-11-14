@@ -70,7 +70,7 @@ export default function TechWorldIntro() {
   return (
     <div
       aria-label="Welcome to Creto Studio"
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#011032] transition-opacity duration-500 ${exiting ? "pointer-events-none opacity-0" : "opacity-100"}`}
+      className={`fixed inset-0 z-[9999] max-md:hidden flex flex-col items-center justify-center overflow-hidden bg-[#011032] transition-opacity duration-500 ${exiting ? "pointer-events-none opacity-0" : "opacity-100"}`}
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(0,119,255,.28),transparent_42%),radial-gradient(ellipse_at_15%_20%,rgba(32,185,255,.15),transparent_35%),linear-gradient(135deg,#011032,#041a40_55%,#010b20)]" />
       <div className="pointer-events-none absolute h-[min(70vw,32rem)] w-[min(70vw,32rem)] rounded-full border border-[#35B9FF]/20 shadow-[0_0_100px_rgba(0,119,255,.15)]" />
