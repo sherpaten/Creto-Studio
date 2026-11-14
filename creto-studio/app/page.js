@@ -3,6 +3,7 @@ import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import ServicesGrid from "../components/ServicesGrid";
+import VisualShowcase from "../components/VisualShowcase";
 import Projects from "../components/Projects";
 import MarketingFooter from "../components/MarketingFooter";
 
@@ -34,7 +35,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#04132D]">
       <Navbar />
-      <main><Hero /><ServicesGrid /><Projects /><HomeCallout /></main>
+      <main><Hero /><ServicesGrid /><VisualShowcase /><Projects /><HomeCallout /></main>
       <MarketingFooter />
     </div>
   );
