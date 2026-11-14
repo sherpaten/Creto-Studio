@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -29,7 +30,7 @@ const visuals = [
     category: "Technology & Innovation",
     title: "Ideas moving into what’s next.",
     description: "We help turn complex ideas into clear, capable digital solutions built to grow with your business.",
-    image: "https://images.unsplash.com/photo-1758773263238-1989d0cc788c?auto=format&fit=crop&w=1400&q=85",
+    image: "https://images.unsplash.com/photo-1758773263238-1989d0cc788c?auto=format&fit=crop&w=800&q=70",
     alt: "Developer working at a laptop in a softly lit city workspace at night",
     credit: "Photo by Chirayu Trivedi on Unsplash",
     source: "https://unsplash.com/photos/person-working-on-laptop-at-night-with-city-view-g_ra59rIXDk",
@@ -51,7 +52,15 @@ export default function VisualShowcase() {
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           {visuals.map((item) => (
             <article key={item.number} className={`group relative isolate min-h-[330px] overflow-hidden rounded-3xl border border-white/10 bg-[#0A2148] ${item.layout} ${item.number === "03" ? "lg:min-h-[390px]" : ""}`}>
-              <img src={item.image} alt={item.alt} loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                sizes={item.number === "03" ? "(max-width: 1024px) 100vw, 100vw" : "(max-width: 1024px) 100vw, 60vw"}
+                quality={70}
+                loading="lazy"
+                className="absolute inset-0 -z-20 object-cover transition duration-700 group-hover:scale-[1.04]"
+              />
               <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#03112A] via-[#03112A]/55 to-[#03112A]/5" />
               <div className="flex h-full min-h-[330px] flex-col justify-between p-6 sm:p-8 lg:min-h-[360px]">
                 <div className="flex items-center justify-between">
