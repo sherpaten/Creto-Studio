@@ -23,10 +23,11 @@ HOW TO RESPOND
 
 export async function POST(request) {
   try {
-    const apiKey = process.env.AI_GATEWAY_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
+      console.error("GEMINI_API_KEY is not configured for this deployment.");
       return Response.json(
-        { error: "The AI assistant is being configured. Please contact Creto Studio on WhatsApp for now." },
+        { error: "The AI assistant is temporarily unavailable. Please contact Creto Studio on WhatsApp." },
         { status: 503 }
       );
     }
@@ -41,43 +42,61 @@ export async function POST(request) {
       )
       .slice(-12)
       .map((message) => ({
-        role: message.role,
-        content: message.content.slice(0, 1200),
+        role: message.role === "assistant" ? "model" : "user",
+        parts: [{ text: message.content.slice(0, 1200) }],
       }));
 
     if (!safeMessages.length || safeMessages[safeMessages.length - 1].role !== "user") {
       return Response.json({ error: "Please enter a message to get started." }, { status: 400 });
     }
 
-    const upstream = await fetch("https://ai-gateway.vercel.sh/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: process.env.AI_CHAT_MODEL || "openai/gpt-5.4",
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...safeMessages],
-        max_tokens: 450,
-        temperature: 0.5,
-      }),
-      signal: AbortSignal.timeout(25000),
-    });
+    const model = process.env.GEMINI_CHAT_MODEL || "gemini-3.8-flash";
+    const upstream = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "x-goog-api-key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents: safeMessages,
+          generationConfig: {
+            maxOutputTokens: 450,
+            temperature: 0.5,
+          },
+        }),
+        signal: AbortSignal.timeout(25000),
+      }
+    );
 
     if (!upstream.ok) {
-      console.error("AI Gateway request failed:", upstream.status, await upstream.text());
-      return Response.json({ error: "I couldn't reach the assistant just now. Please try again or contact us on WhatsApp." }, { status: 502 });
+      const errorBody = await upstream.text();
+      console.error("Gemini API request failed:", upstream.status, errorBody);
+      return Response.json(
+        { error: "I couldn't reach the assistant just now. Please try again or contact us on WhatsApp." },
+        { status: 502 }
+      );
     }
 
     const result = await upstream.json();
-    const reply = result.choices?.[0]?.message?.content;
-    if (typeof reply !== "string" || !reply.trim()) {
+    const reply = result.candidates?.[0]?.content?.parts
+      ?.map((part) => part.text || "")
+      .join("")
+      .trim();
+
+    if (!reply) {
+      console.error("Gemini returned no text:", JSON.stringify(result.promptFeedback || {}));
       return Response.json({ error: "I didn't get a response. Please try again." }, { status: 502 });
     }
 
-    return Response.json({ reply: reply.trim() });
+    return Response.json({ reply });
   } catch (error) {
     console.error("Chat API error:", error);
-    return Response.json({ error: "Something went wrong. Please try again in a moment." }, { status: 500 });
+    return Response.json(
+      { error: "Something went wrong. Please try again in a moment." },
+      { status: 500 }
+    );
   }
 }
