@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 const fadeUp = {
@@ -35,7 +36,7 @@ function ProjectCard({ project }) {
     <motion.div variants={fadeUp} whileHover={{ y: -7 }} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top }); }} className={`group relative overflow-hidden rounded-3xl border bg-[#0A2148] shadow-[0_18px_60px_rgba(0,0,0,.18)] transition hover:border-[#36B9FF]/45 ${project.featured ? "border-[#168BFF]/45" : "border-white/10"}`}>
       <Link href={destination} target={project.url ? "_blank" : undefined} rel={project.url ? "noreferrer" : undefined} aria-label={project.url ? `Visit the Zero Point Meditation Center website` : `Discuss a project like ${project.title} with Creto Studio`} className="block">
         <div className="relative overflow-hidden">
-          <img src={project.image} alt={`${project.title} website project preview`} loading="lazy" className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-[1.04] sm:h-64" />
+          <Image src={project.image} alt={`${project.title} website project preview`} width={900} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" loading="lazy" className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-[1.04] sm:h-64" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#06152F]/55 via-transparent to-transparent" />
           {project.featured && <span className="absolute left-4 top-4 rounded-full border border-[#8BD8FF]/35 bg-[#061A3B]/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-[#A9E5FF] backdrop-blur">Featured non-profit project</span>}
           {hovering && <motion.span initial={{ opacity: 0, scale: .85 }} animate={{ opacity: 1, scale: 1 }} style={{ position: "absolute", left: pos.x, top: pos.y, translateX: "-50%", translateY: "-50%" }} className="pointer-events-none z-10 whitespace-nowrap rounded-full bg-white px-4 py-2 text-xs font-bold text-[#061A3B] shadow-xl">{project.action || "Discuss a similar project"}</motion.span>}
