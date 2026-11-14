@@ -1,140 +1,70 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Music, Music as MusicOff } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X, Music, Music2 } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useSound } from "./SoundProvider";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Team", href: "/team" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const { musicMuted, toggleMusic } = useSound();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const handleLinkClick = () => {
-    setOpen(false);
-  };
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
-        scrolled ? "shadow-[0_2px_20px_rgba(1,16,50,0.08)] border-b border-[#011032]/10" : "border-b border-transparent"
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 shrink-0">
-          <img src="/logo.png" alt="Creto Studio" className="h-12 sm:h-14 w-auto" />
-        </a>
-
-        <ul className="hidden lg:flex items-center gap-9">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="font-mono text-base text-[#012468] hover:text-[#0185FA] transition-colors duration-200">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
+    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#0B3B75]/10 bg-white/95 backdrop-blur-xl transition-shadow ${scrolled ? "shadow-[0_8px_30px_rgba(1,16,50,.10)]" : ""}`}>
+      <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
+        <Link href="/" aria-label="Creto Studio home" onClick={() => setOpen(false)} className="shrink-0">
+          <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto object-contain" />
+        </Link>
+        <div className="hidden items-center gap-8 lg:flex">
+          {links.map((link) => {
+            const active = pathname === link.href || (link.href === "/services" && pathname.startsWith("/services/"));
+            return <Link key={link.href} href={link.href} className={`text-sm font-semibold transition-colors ${active ? "text-[#0878E8]" : "text-[#102B54] hover:text-[#0878E8]"}`}>{link.label}</Link>;
+          })}
+        </div>
         <div className="flex items-center gap-4">
-          <button
-            onClick={toggleMusic}
-            aria-label={musicMuted ? "Play background music" : "Pause background music"}
-            title={musicMuted ? "Play background music" : "Pause background music"}
-            className="text-[#012468] hover:text-[#0185FA] transition-colors duration-200"
-          >
-            {musicMuted ? <MusicOff size={20} /> : <Music size={20} />}
+          <button onClick={toggleMusic} aria-label={musicMuted ? "Play background music" : "Pause background music"} className="text-[#12345D] transition hover:text-[#0878E8]">
+            {musicMuted ? <Music2 size={19} /> : <Music size={19} />}
           </button>
-
           <MagneticButton>
-            <a href="#contact" data-cursor-hover className="hidden lg:inline-flex items-center rounded-full bg-[#004ACA] px-7 py-3 text-white font-mono text-base hover:bg-[#0185FA] hover:shadow-[0_0_25px_rgba(1,133,250,0.4)] transition-all duration-300">
-              Get in touch
-            </a>
+            <Link href="/contact" className="hidden rounded-full bg-[#0759D6] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(7,89,214,.22)] transition hover:bg-[#0878E8] lg:inline-flex">Start a project <span className="ml-2">↗</span></Link>
           </MagneticButton>
-
-          <button
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="lg:hidden text-[#011032] p-2 -mr-2"
-          >
-            <Menu size={28} />
-          </button>
+          <button onClick={() => setOpen(true)} aria-label="Open navigation" className="rounded-lg p-2 text-[#102B54] lg:hidden"><Menu size={25} /></button>
         </div>
       </nav>
-
       <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 bg-white lg:hidden"
-          >
-            <div className="flex items-center justify-between px-6 h-24">
-              <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto" />
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="text-[#011032] p-2 -mr-2"
-              >
-                <X size={28} />
-              </button>
-            </div>
-
-            <motion.ul
-              initial="hidden"
-              animate="show"
-              variants={{
-                hidden: {},
-                show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
-              }}
-              className="flex flex-col items-center justify-center gap-8 mt-16"
-            >
-              {links.map((l) => (
-                <motion.li
-                  key={l.href}
-                  variants={{
-                    hidden: { opacity: 0, y: 16 },
-                    show: { opacity: 1, y: 0 },
-                  }}
-                >
-                  <a href={l.href} onClick={handleLinkClick} className="font-display text-3xl text-[#011032]">
-                    {l.label}
-                  </a>
-                </motion.li>
-              ))}
-              <motion.li variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}>
-                <a href="#contact" onClick={handleLinkClick} className="mt-4 inline-flex items-center rounded-full bg-[#004ACA] px-8 py-3 text-white font-mono text-sm">
-                  Get in touch
-                </a>
-              </motion.li>
-            </motion.ul>
+        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] bg-[#061A3B] px-7 py-6 text-white lg:hidden">
+          <div className="flex items-center justify-between"><img src="/logo.png" alt="Creto Studio" className="h-12 w-auto rounded bg-white p-1" /><button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3"><X size={22} /></button></div>
+          <motion.div initial="hidden" animate="show" className="mt-20 flex flex-col gap-7">
+            {links.map((link, i) => <motion.div key={link.href} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * .05 }}><Link href={link.href} onClick={() => setOpen(false)} className="text-3xl font-semibold tracking-tight">{link.label}<span className="ml-3 text-[#54B8FF]">↗</span></Link></motion.div>)}
           </motion.div>
-        )}
+          <p className="absolute bottom-8 left-7 text-xs tracking-[.2em] text-blue-200/70">TECHNOLOGY · DESIGN · GROWTH</p>
+        </motion.div>}
       </AnimatePresence>
     </header>
   );
