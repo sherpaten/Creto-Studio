@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Code2, ShoppingCart, Smartphone } from "lucide-react";
 import TiltCard from "./TiltCard";
@@ -25,7 +26,7 @@ const services = [
     icon: Smartphone,
     title: "Mobile App Development",
     desc: "Thoughtful Android, iOS, and cross-platform experiences that keep customers connected.",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=70",
     imageAlt: "Smartphone displaying a mobile application",
   },
   {
@@ -33,7 +34,7 @@ const services = [
     icon: ShoppingCart,
     title: "E-Commerce Solutions",
     desc: "Online stores, product experiences, payments, and ordering workflows designed to convert.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=70",
     imageAlt: "Online shopping and digital commerce workspace",
   },
 ];
@@ -53,11 +54,14 @@ export default function ServicesGrid() {
             <motion.div key={slug} variants={fadeUp} className="h-full">
               <Link href={`/services/${slug}`} aria-label={`Explore ${title}`} className="group block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B9FF]">
                 <TiltCard className="relative isolate flex min-h-[330px] h-full flex-col justify-end overflow-hidden rounded-2xl border border-white/15 p-7 shadow-xl transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#36B9FF]/65 group-hover:shadow-[0_18px_50px_rgba(0,100,220,.25)] sm:min-h-[370px]">
-                  <div
-                    role="img"
-                    aria-label={imageAlt}
-                    className="absolute inset-0 -z-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{ backgroundImage: `url("${image}")` }}
+                  <Image
+                    src={image}
+                    alt={imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={70}
+                    loading="lazy"
+                    className="absolute inset-0 -z-20 object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#041126] via-[#061D46]/80 to-[#061D46]/20" />
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#8BD8FF]/35 bg-[#0878E8]/35 backdrop-blur-md transition group-hover:scale-110 group-hover:bg-[#0878E8]/55">
