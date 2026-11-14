@@ -11,15 +11,6 @@ const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
 const headline = ["Digital Products.", "Built for What's Next."];
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: 0.16 + i * 0.1, ease: "easeOut" },
-  }),
-};
-
 export default function Hero() {
   const [showHero3D, setShowHero3D] = useState(false);
   useEffect(() => {
