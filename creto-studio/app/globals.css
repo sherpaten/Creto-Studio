@@ -2,58 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
-}
-
-body {
-  background-color: #011032;
-}
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body { background-color: #04132D; }
 
 .font-display {
   font-family: var(--font-heading), "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
 }
-
 .font-mono {
   font-family: var(--font-body), "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
 }
 
-/* Brand gradients */
-.gradient-primary { background: linear-gradient(135deg, #011032, #004ACA); }
-.gradient-brand { background: linear-gradient(135deg, #004ACA, #0185FA); }
-.gradient-shine { background: linear-gradient(135deg, #0185FA, #79ABCF); }
-.gradient-dark { background: linear-gradient(135deg, #012468, #011032); }
-.gradient-vibrant { background: linear-gradient(135deg, #004ACA, #6AA8FF); }
+/* Creto logo palette: midnight navy, electric blue and cyan */
+.gradient-primary { background: linear-gradient(135deg, #04132D, #0759D6); }
+.gradient-brand { background: linear-gradient(135deg, #0759D6, #0878E8 55%, #20B9FF); }
+.gradient-shine { background: linear-gradient(135deg, #0878E8, #20B9FF 60%, #A5E8FF); }
+.gradient-dark { background: linear-gradient(135deg, #061D46, #04132D); }
+.gradient-vibrant { background: linear-gradient(135deg, #0759D6, #20B9FF); }
 
 @keyframes pulse-slow {
-  0%, 100% { transform: scale(1) translateY(0px); opacity: 0.55; }
-  50% { transform: scale(1.12) translateY(-18px); opacity: 0.75; }
+  0%, 100% { transform: scale(1) translateY(0px); opacity: 0.45; }
+  50% { transform: scale(1.12) translateY(-18px); opacity: 0.7; }
 }
-
-.animate-pulse-slow {
-  animation: pulse-slow 9s ease-in-out infinite;
-}
+.animate-pulse-slow { animation: pulse-slow 9s ease-in-out infinite; }
 
 @keyframes float-y {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-24px); }
 }
-
-.animate-float {
-  animation: float-y 7s ease-in-out infinite;
-}
+.animate-float { animation: float-y 7s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
