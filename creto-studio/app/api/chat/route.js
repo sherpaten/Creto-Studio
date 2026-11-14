@@ -50,7 +50,7 @@ export async function POST(request) {
       return Response.json({ error: "Please enter a message to get started." }, { status: 400 });
     }
 
-    const model = process.env.GEMINI_CHAT_MODEL || "gemini-3.8-flash";
+    const model = process.env.GEMINI_CHAT_MODEL || "gemini-3.5-flash-lite";
     const upstream = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
@@ -67,7 +67,7 @@ export async function POST(request) {
             temperature: 0.5,
           },
         }),
-        signal: AbortSignal.timeout(25000),
+        signal: AbortSignal.timeout(55000),
       }
     );
 
