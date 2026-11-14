@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Code2, PenTool, ShoppingCart, Smartphone, Search, Cpu, Share2, Palette } from "lucide-react";
+import { ArrowUpRight, Code2, ShoppingCart, Smartphone } from "lucide-react";
 import TiltCard from "./TiltCard";
 
 const fadeUp = {
@@ -12,14 +12,30 @@ const fadeUp = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
 
 const services = [
-  { slug: "web-development", icon: Code2, title: "Web Development", desc: "Fast, responsive business websites and custom web applications built around your goals." },
-  { slug: "mobile-app-development", icon: Smartphone, title: "Mobile App Development", desc: "Thoughtful Android, iOS, and cross-platform experiences that keep customers connected." },
-  { slug: "ecommerce", icon: ShoppingCart, title: "E-Commerce Solutions", desc: "Online stores, product experiences, payments, and ordering workflows designed to convert." },
-  { slug: "ui-ux-design", icon: PenTool, title: "UI/UX Design", desc: "Clear user journeys, intuitive interfaces, and product design grounded in real user needs." },
-  { slug: "ai-software", icon: Cpu, title: "AI & Software Solutions", desc: "Custom software, practical AI integrations, and automation that reduce repetitive work." },
-  { slug: "brand-identity", icon: Palette, title: "Brand Identity", desc: "Distinctive visual systems and brand experiences that help businesses stand apart." },
-  { slug: "digital-marketing", icon: Search, title: "SEO & Digital Marketing", desc: "Search-focused foundations and digital campaigns that help the right people find you." },
-  { slug: "social-media-management", icon: Share2, title: "Social Media Management", desc: "Consistent content planning and channel management that strengthen your online presence." },
+  {
+    slug: "web-development",
+    icon: Code2,
+    title: "Web Development",
+    desc: "Fast, responsive business websites and custom web applications built around your goals.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
+    imageAlt: "Developer workspace with a laptop and code",
+  },
+  {
+    slug: "mobile-app-development",
+    icon: Smartphone,
+    title: "Mobile App Development",
+    desc: "Thoughtful Android, iOS, and cross-platform experiences that keep customers connected.",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9?auto=format&fit=crop&w=1200&q=85",
+    imageAlt: "Smartphone displaying a mobile application",
+  },
+  {
+    slug: "ecommerce",
+    icon: ShoppingCart,
+    title: "E-Commerce Solutions",
+    desc: "Online stores, product experiences, payments, and ordering workflows designed to convert.",
+    image: "https://images.unsplash.com/photo-155674녕하세요?auto=format&fit=crop&w=1200&q=85",
+    imageAlt: "Online shopping and digital commerce workspace",
+  },
 ];
 
 export default function ServicesGrid() {
@@ -32,15 +48,24 @@ export default function ServicesGrid() {
           <h2 className="mb-5 text-3xl font-bold text-white sm:text-5xl">One partner for your next digital move.</h2>
           <p className="text-base leading-relaxed text-blue-100/70 sm:text-lg">Strategy, design, engineering, and digital growth — connected around the outcomes your business needs.</p>
         </motion.div>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-          {services.map(({ slug, icon: Icon, title, desc }) => (
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {services.map(({ slug, icon: Icon, title, desc, image, imageAlt }) => (
             <motion.div key={slug} variants={fadeUp} className="h-full">
-              <Link href={slug === "brand-identity" ? "/services" : `/services/${slug}`} className="group block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B9FF]">
-                <TiltCard className="h-full rounded-2xl border border-white/10 bg-white/[.045] p-6 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#36B9FF]/55 group-hover:bg-[#0A2A58] group-hover:shadow-[0_18px_50px_rgba(0,100,220,.16)] sm:p-7">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#36B9FF]/20 bg-[#0878E8]/15 transition group-hover:scale-110 group-hover:bg-[#0878E8]/25"><Icon size={22} className="text-[#70CEFF]" /></div>
-                  <h3 className="mb-3 text-lg font-bold text-white">{title}</h3>
-                  <p className="text-sm leading-relaxed text-blue-100/65">{desc}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-[#7BD3FF]">Explore service <ArrowUpRight size={15}/></span>
+              <Link href={`/services/${slug}`} aria-label={`Explore ${title}`} className="group block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B9FF]">
+                <TiltCard className="relative isolate flex min-h-[330px] h-full flex-col justify-end overflow-hidden rounded-2xl border border-white/15 p-7 shadow-xl transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#36B9FF]/65 group-hover:shadow-[0_18px_50px_rgba(0,100,220,.25)] sm:min-h-[370px]">
+                  <div
+                    role="img"
+                    aria-label={imageAlt}
+                    className="absolute inset-0 -z-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url("${image}")` }}
+                  />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#041126] via-[#061D46]/80 to-[#061D46]/20" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#8BD8FF]/35 bg-[#0878E8]/35 backdrop-blur-md transition group-hover:scale-110 group-hover:bg-[#0878E8]/55">
+                    <Icon size={22} className="text-white" />
+                  </div>
+                  <h3 className="mb-3 text-xl font-bold text-white">{title}</h3>
+                  <p className="max-w-md text-sm leading-relaxed text-blue-50/90">{desc}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#9DDEFF]">Explore service <ArrowUpRight size={16}/></span>
                 </TiltCard>
               </Link>
             </motion.div>
