@@ -20,7 +20,7 @@ export function SoundProvider({ children }) {
     const audio = new Audio("/sounds/ambient.mp3");
     audio.loop = true;
     audio.volume = 0.30;
-    audio.preload = "auto";
+    audio.preload = "none";
     ambientRef.current = audio;
 
     return () => {
@@ -66,37 +66,6 @@ export function SoundProvider({ children }) {
     }
   }, []);
 
-  // Keep retrying on every qualifying gesture (click, keydown, touchend —
-  // the event types browsers actually treat as valid "user activation" for
-  // autoplay) until playback genuinely succeeds. Doesn't give up after one
-  // failed attempt, since a scroll-only visitor's first gesture (wheel)
-  // isn't a valid activation event and would otherwise silently fail forever.
-  useEffect(() => {
-    let done = false;
-
-    const trigger = () => {
-      if (done || userMutedRef.current) return;
-      startMusic().then((ok) => {
-        if (ok) {
-          done = true;
-          window.removeEventListener("click", trigger);
-          window.removeEventListener("keydown", trigger);
-          window.removeEventListener("touchend", trigger);
-        }
-      });
-    };
-
-    window.addEventListener("click", trigger);
-    window.addEventListener("keydown", trigger);
-    window.addEventListener("touchend", trigger, { passive: true });
-
-    return () => {
-      window.removeEventListener("click", trigger);
-      window.removeEventListener("keydown", trigger);
-      window.removeEventListener("touchend", trigger);
-    };
-  }, [startMusic]);
-
   useEffect(() => {
     const handleVisibility = () => {
       const audio = ambientRef.current;
@@ -116,7 +85,7 @@ export function SoundProvider({ children }) {
   }, [musicPlaying]);
 
   return (
-    <SoundContext.Provider value={{ musicMuted, musicPlaying, toggleMusic, startMusic }}>
+    <SoundContext.Provider value={{ musicMuted, musicPlaying, toggleMusic }}>
       {children}
     </SoundContext.Provider>
   );
