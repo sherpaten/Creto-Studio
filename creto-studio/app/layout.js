@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
 import TechWorldIntro from "@/components/TechWorldIntro";
@@ -41,6 +42,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} ${inter.variable}`}>
+        <Script id="google-tag-manager-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
+        <Script
+          id="google-tag-manager"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-K7NPXSLJ"
+          strategy="beforeInteractive"
+        />
         <SoundProvider>
           <TechWorldIntro />
           <CustomCursor />
