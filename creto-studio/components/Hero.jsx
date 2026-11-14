@@ -41,30 +41,30 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
         <div className="max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }} className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#43B9FF]/25 bg-[#0A2A58]/65 px-4 py-2 text-[10px] font-bold uppercase tracking-[.23em] text-[#8BD8FF] sm:text-xs">
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#43B9FF]/25 bg-[#0A2A58]/65 px-4 py-2 text-[10px] font-bold uppercase tracking-[.23em] text-[#8BD8FF] sm:text-xs">
             <Sparkles size={14} className="text-[#16B9FF]" /> Technology · Design · Growth
-          </motion.div>
+          </div>
 
           <h1 className="max-w-4xl text-5xl font-bold leading-[1.04] tracking-[-.055em] text-white sm:text-6xl lg:text-[5.15rem]">
             {headline.map((line, i) => (
-              <motion.span key={line} custom={i} initial="hidden" animate="show" variants={wordVariants} className={i === 1 ? "block bg-gradient-to-r from-[#168BFF] via-[#20B9FF] to-[#A5E8FF] bg-clip-text text-transparent" : "block"}>
+              <span key={line} className={i === 1 ? "block bg-gradient-to-r from-[#168BFF] via-[#20B9FF] to-[#A5E8FF] bg-clip-text text-transparent" : "block"}>
                 {line}
-              </motion.span>
+              </span>
             ))}
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .4 }} className="mt-7 max-w-xl text-base leading-8 text-blue-100/75 sm:text-lg">
+          <p className="mt-7 max-w-xl text-base leading-8 text-blue-100/75 sm:text-lg">
             From high-performing websites and mobile apps to e-commerce, AI-powered software and digital growth — we turn ambitious ideas into useful digital experiences.
-          </motion.p>
+          </p>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .55 }} className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-9 flex flex-wrap items-center gap-4">
             <Link href="/contact" className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-7 py-4 text-sm font-bold text-white shadow-[0_12px_34px_rgba(0,111,255,.28)] transition hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(0,160,255,.35)]">
               Start a project <ArrowRight size={17} className="transition group-hover:translate-x-1" />
             </Link>
             <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[.04] px-7 py-4 text-sm font-semibold text-white transition hover:border-[#39BFFF]/60 hover:bg-white/[.08]">
               Explore our work <ArrowRight size={16} />
             </Link>
-          </motion.div>
+          </div>
 
           <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 text-xs font-medium text-blue-100/55">
             <span>Web & Mobile</span><span className="text-[#20B9FF]">/</span><span>AI & Software</span><span className="text-[#20B9FF]">/</span><span>Digital Growth</span>
@@ -76,7 +76,7 @@ export default function Hero() {
           <div className="absolute h-[290px] w-[290px] rounded-full border border-dashed border-[#54C7FF]/30" />
           <div className="absolute h-[220px] w-[220px] rounded-full bg-gradient-to-br from-[#0878E8]/25 to-[#13D4F5]/10 blur-2xl" />
           <div className="relative flex h-52 w-52 items-center justify-center rounded-[2.5rem] border border-[#62CFFF]/30 bg-gradient-to-br from-[#0C4EAA]/55 via-[#061E48]/90 to-[#04132D]/90 shadow-[0_30px_100px_rgba(0,120,255,.25)] backdrop-blur-xl">
-            <Image src="/logo.png" alt="Creto Studio logo" width={160} height={107} sizes="160px" priority className="w-40 rounded-xl bg-white p-2 shadow-2xl" />
+            <Image src="/logo.png" alt="Creto Studio logo" width={160} height={107} sizes="160px" loading="lazy" className="w-40 rounded-xl bg-white p-2 shadow-2xl" />
             <span className="absolute -right-7 top-7 h-3 w-3 rounded-full bg-[#17C7FF] shadow-[0_0_24px_#17C7FF]" />
             <span className="absolute -bottom-4 left-8 h-2 w-2 rounded-full bg-[#0878E8] shadow-[0_0_20px_#0878E8]" />
           </div>
