@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Music, Music2 } from "lucide-react";
@@ -34,7 +35,7 @@ export default function Navbar() {
     <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#EAE4D8] bg-[#FFFCF5]/95 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
       <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link href="/" aria-label="Creto Studio home" onClick={() => setOpen(false)} className="shrink-0">
-          <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto object-contain" />
+          <Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-12 w-auto object-contain" />
         </Link>
         <div className="hidden items-center gap-6 xl:flex">
           {links.map((link) => {
@@ -50,7 +51,7 @@ export default function Navbar() {
       </nav>
       <AnimatePresence>
         {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] bg-[#050B18] px-7 py-6 text-white xl:hidden">
-          <div className="flex items-center justify-between"><img src="/logo.png" alt="Creto Studio" className="h-12 w-auto object-contain" /><button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3"><X size={22} /></button></div>
+          <div className="flex items-center justify-between"><Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-12 w-auto object-contain" /><button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3"><X size={22} /></button></div>
           <motion.div initial="hidden" animate="show" className="mt-16 flex flex-col gap-5">
             {links.map((link, i) => <motion.div key={link.href} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * .05 }}><Link href={link.href} onClick={() => setOpen(false)} className="text-2xl font-semibold tracking-tight">{link.label}<span className="ml-3 text-[#54B8FF]">↗</span></Link></motion.div>)}
           </motion.div>
