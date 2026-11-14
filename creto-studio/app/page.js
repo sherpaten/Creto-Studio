@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import ServicesGrid from "../components/ServicesGrid";
 import Projects from "../components/Projects";
-import Footer from "../components/Footer";
+import MarketingFooter from "../components/MarketingFooter";
 
 export const metadata = {
   title: "Creto Studio | Digital Products Built for What's Next",
@@ -13,7 +13,7 @@ export const metadata = {
 
 function HomeCallout() {
   return (
-    <section className="relative overflow-hidden bg-[#061A3B] px-6 py-24 text-white sm:py-32">
+    <section className="relative overflow-hidden bg-[#04132D] px-6 py-24 text-white sm:py-32">
       <div className="pointer-events-none absolute -right-24 -top-28 h-96 w-96 rounded-full border border-[#36A9FF]/20 bg-[#0878E8]/10 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
         <div>
@@ -23,7 +23,7 @@ function HomeCallout() {
         </div>
         <div className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[.045] p-7 sm:p-9">
           {["A clear conversation about your goals","A practical view of possible next steps","A solution shaped around your business"].map((item)=><div key={item} className="flex items-start gap-3 text-sm text-blue-100/80"><CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#67C5FF]"/>{item}</div>)}
-          <Link href="/contact" className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-[#0759D6] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#0878E8]">Start a project <ArrowUpRight size={17}/></Link>
+          <Link href="/contact" className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-6 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5">Start a project <ArrowUpRight size={17}/></Link>
         </div>
       </div>
     </section>
@@ -32,15 +32,10 @@ function HomeCallout() {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[#061A3B]">
+    <div className="min-h-screen bg-[#04132D]">
       <Navbar />
-      <main>
-        <Hero />
-        <ServicesGrid />
-        <Projects />
-        <HomeCallout />
-      </main>
-      <Footer />
+      <main><Hero /><ServicesGrid /><Projects /><HomeCallout /></main>
+      <MarketingFooter />
     </div>
   );
 }
