@@ -31,7 +31,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#E7E2D8] bg-[#F7F4EC]/95 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
+    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#EAE4D8] bg-[#FFFCF5]/95 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
       <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link href="/" aria-label="Creto Studio home" onClick={() => setOpen(false)} className="shrink-0">
           <img src="/logo.png" alt="Creto Studio" className="h-12 w-auto object-contain" />
