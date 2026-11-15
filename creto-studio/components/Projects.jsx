@@ -45,9 +45,11 @@ const projects = [
   {
     image: "/Shamu.png",
     title: "Shamu Cap Store",
-    category: "E-Commerce Storefront",
+    category: "E-Commerce Demo",
     summary: "A product-led storefront concept for presenting a focused collection and making it easier for customers to browse products.",
     scope: ["Product presentation", "Storefront browsing experience", "Commerce-ready layout"],
+    status: "Demo coming soon",
+    action: "Demo coming soon",
   },
 ];
 
@@ -102,6 +104,7 @@ function ProjectCard({ project, detailed }) {
           <Image src={project.image} alt={`${project.title} website project preview`} width={900} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" quality={78} loading="lazy" className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-[1.04] sm:h-64" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#06152F]/55 via-transparent to-transparent" />
           {project.featured && <span className="absolute left-4 top-4 rounded-full border border-white/50 bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-[#12345A] backdrop-blur">Featured non-profit project</span>}
+          {project.status && <span className="absolute right-4 top-4 rounded-full border border-white/70 bg-[#102744]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white backdrop-blur">{project.status}</span>}
           {hovering && <motion.span initial={{ opacity: 0, scale: .85 }} animate={{ opacity: 1, scale: 1 }} style={{ position: "absolute", left: pos.x, top: pos.y, translateX: "-50%", translateY: "-50%" }} className="pointer-events-none z-10 whitespace-nowrap rounded-full bg-white px-4 py-2 text-xs font-bold text-[#061A3B] shadow-xl">{project.action || "Discuss a similar project"}</motion.span>}
         </div>
         <div className="p-6 sm:p-7">
