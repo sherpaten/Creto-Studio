@@ -47,6 +47,38 @@ const projects = [
   },
 ];
 
+
+const demoProjects = [
+  {
+    title: "Creto Commerce",
+    platform: "Medusa",
+    category: "E-commerce platform",
+    summary: "A planned full-stack storefront demo with curated products, product discovery, cart and a sandbox checkout experience.",
+    focus: "Custom storefront · Commerce backend · Checkout journey",
+  },
+  {
+    title: "Creto Commerce Pro",
+    platform: "Saleor",
+    category: "Headless commerce",
+    summary: "A planned API-first commerce experience demonstrating a modern storefront connected to a scalable commerce backend.",
+    focus: "Headless storefront · GraphQL API · Product catalogue",
+  },
+  {
+    title: "Creto Operations",
+    platform: "Appsmith",
+    category: "Business dashboard",
+    summary: "A planned interactive operations dashboard with sample KPIs, data tables, filters and business workflows.",
+    focus: "Admin dashboard · Data visualisation · Workflow tools",
+  },
+  {
+    title: "Creto Content Studio",
+    platform: "Wagtail",
+    category: "CMS-powered website",
+    summary: "A planned editorial and business website showing how structured content and an intuitive CMS can work together.",
+    focus: "Content management · Custom website · Editorial workflow",
+  },
+];
+
 function ProjectCard({ project, detailed }) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
@@ -89,6 +121,29 @@ export default function Projects({ detailed = false }) {
           <p className="mt-5 max-w-2xl text-base leading-8 text-blue-100/70 sm:text-lg">A selection of digital experiences across community, education, local services and commerce. Each brief brings a different audience and challenge, so we shape the structure, content and technology around what the project needs.</p>
         </motion.div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 sm:gap-8">{projects.map((project) => <ProjectCard key={project.title} project={project} detailed={detailed} />)}</div>
+        {detailed && (
+          <motion.section variants={fadeUp} className="mt-20 border-t border-white/10 pt-16">
+            <div className="mb-10 max-w-3xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[.25em] text-[#6DCBFF]">Creto demo lab</p>
+              <h3 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">Explore what we’re building.</h3>
+              <p className="mt-4 text-sm leading-7 text-blue-100/70 sm:text-base">We’re developing a set of interactive product demonstrations using established open-source platforms. Each will be customized by Creto Studio and published here once it is tested and ready.</p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              {demoProjects.map((project) => (
+                <article key={project.platform} className="relative overflow-hidden rounded-2xl border border-[#168BFF]/25 bg-[#0A1428] p-6 sm:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#6DCBFF]">{project.category}</p>
+                    <span className="rounded-full border border-[#6DCBFF]/25 bg-[#0B2A4B] px-3 py-1 text-[10px] font-semibold uppercase tracking-[.12em] text-[#A9E5FF]">In development</span>
+                  </div>
+                  <h4 className="mt-5 text-xl font-bold text-white">{project.title}</h4>
+                  <p className="mt-1 text-xs font-medium text-[#8DD8FF]">Powered by {project.platform}</p>
+                  <p className="mt-4 text-sm leading-7 text-blue-100/70">{project.summary}</p>
+                  <p className="mt-5 border-t border-white/10 pt-4 text-xs leading-6 text-blue-100/55">{project.focus}</p>
+                </article>
+              ))}
+            </div>
+          </motion.section>
+        )}
         {detailed && <motion.div variants={fadeUp} className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-white/10 bg-white/[.04] p-7 sm:flex-row sm:items-center sm:p-9">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6DCBFF]">Your project, next</p>
