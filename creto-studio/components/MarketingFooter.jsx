@@ -37,7 +37,7 @@ export default function MarketingFooter() {
             <p className="mb-3 text-sm font-bold uppercase tracking-[.18em] text-[#172033]">Follow Creto</p>
             <div className="flex items-center gap-3">
               {socials.map(({ name, href, Icon }) => (
-                <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Creto Studio on ${name}`} title={name} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9D4CA] bg-white/70 text-slate-700 transition hover:-translate-y-0.5 hover:border-[#67C5FF] hover:bg-[#0759D6] hover:text-[#0878C8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#67C5FF]">
+                <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Creto Studio on ${name}`} title={name} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9D4CA] bg-white/70 text-slate-700 transition hover:-translate-y-0.5 hover:border-[#67C5FF] hover:bg-[#0759D6] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#67C5FF]">
                   {Icon ? <Icon size={19} strokeWidth={2} aria-hidden="true" /> : (
                     <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
                       <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 15.2 6.1 22H3l7.3-8.4L2.5 2h6.4l4.5 6.2L18.9 2Zm-1.1 18h1.7L8.1 3.9H6.3L17.8 20Z" />
@@ -53,19 +53,19 @@ export default function MarketingFooter() {
           <h3 className="mb-4 text-sm font-bold uppercase tracking-[.18em] text-[#172033]">Explore</h3>
           <div className="grid gap-2.5 text-base text-slate-700">
             <Link href="/about" className="hover:text-[#0759D6]">About us & our team</Link>
-            <Link href="/services" className="hover:text-white">Services</Link>
-            <Link href="/projects" className="hover:text-white">Projects</Link>
-            <Link href="/#process" className="hover:text-white">Our process</Link>
-            <Link href="/about#team" className="hover:text-white">Meet the team</Link>
-            <Link href="/contact" className="hover:text-white">Contact</Link>
+            <Link href="/services" className="transition-colors hover:text-[#0759D6]">Services</Link>
+            <Link href="/projects" className="transition-colors hover:text-[#0759D6]">Projects</Link>
+            <Link href="/#process" className="transition-colors hover:text-[#0759D6]">Our process</Link>
+            <Link href="/about#team" className="transition-colors hover:text-[#0759D6]">Meet the team</Link>
+            <Link href="/contact" className="transition-colors hover:text-[#0759D6]">Contact</Link>
           </div>
         </div>
 
         <div>
-          <h3 className="mb-5 text-sm font-bold uppercase tracking-[.18em] text-[#67C5FF]">Services</h3>
+          <h3 className="mb-4 text-sm font-bold uppercase tracking-[.18em] text-[#172033]">Services</h3>
           <div className="grid gap-2.5 text-base text-slate-700">
             {serviceLinks.map(([label, href]) => (
-              <Link key={href} href={href} className="hover:text-white">{label}</Link>
+              <Link key={href} href={href} className="transition-colors hover:text-[#0759D6]">{label}</Link>
             ))}
           </div>
         </div>
