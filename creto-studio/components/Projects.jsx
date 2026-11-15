@@ -30,6 +30,8 @@ const projects = [
     category: "Education Platform",
     summary: "A digital learning experience designed to make educational content easier to discover, navigate and access across devices.",
     scope: ["Learning content structure", "Course-focused browsing", "Responsive interface design"],
+    url: "https://e-lern.vercel.app/",
+    action: "Visit live website",
   },
   {
     image: "/plumbing-Kathmandu.png",
@@ -37,6 +39,8 @@ const projects = [
     category: "Service Business Website",
     summary: "A service-focused web experience that presents core offerings clearly and gives local customers a straightforward way to explore services and make enquiries.",
     scope: ["Service and information pages", "Mobile-friendly customer journey", "Enquiry-focused structure"],
+    url: "https://plumbing-kathmandu.vercel.app/",
+    action: "Visit live website",
   },
   {
     image: "/Shamu.png",
@@ -93,7 +97,7 @@ function ProjectCard({ project, detailed }) {
   const destination = project.url || "/contact";
   return (
     <motion.div variants={fadeUp} whileHover={{ y: -7 }} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top }); }} className={`group relative overflow-hidden rounded-3xl border bg-white shadow-[0_18px_50px_rgba(15,35,60,.09)] transition hover:-translate-y-1 hover:border-[#168BFF]/45 ${project.featured ? "border-[#168BFF]/45" : "border-[#E5EAF0]"}`}>
-      <Link href={destination} target={project.url ? "_blank" : undefined} rel={project.url ? "noreferrer" : undefined} aria-label={project.url ? "Visit the Zero Point Meditation Center website" : `Discuss a project like ${project.title} with Creto Studio`} className="block">
+      <Link href={destination} target={project.url ? "_blank" : undefined} rel={project.url ? "noreferrer" : undefined} aria-label={project.url ? `Visit the ${project.title} website` : `Discuss a project like ${project.title} with Creto Studio`} className="block">
         <div className="relative overflow-hidden">
           <Image src={project.image} alt={`${project.title} website project preview`} width={900} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" quality={78} loading="lazy" className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-[1.04] sm:h-64" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#06152F]/55 via-transparent to-transparent" />
