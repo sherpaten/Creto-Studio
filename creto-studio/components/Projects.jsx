@@ -62,7 +62,7 @@ const demoProjects = [
     summary: "Explore a responsive sample storefront with product photography, a working demo bag and a guided checkout preview.",
     focus: "Product catalogue · Shopping bag · Demo checkout",
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1100&q=85",
-    url: "https://creto-commerce-demo-tenzings-projects.vercel.app",
+    url: "https://creto-commerce-demo.vercel.app/",
   },
   {
     title: "Creto Commerce Pro",
@@ -80,7 +80,7 @@ const demoProjects = [
     summary: "Preview a business operations workspace concept for monitoring sample KPIs, reviewing records and exploring team workflows.",
     focus: "Operations dashboard · Sample data · Workflow tools",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=85",
-    url: "https://creto-operations-tenzings-projects.vercel.app",
+    url: "https://creto-operations.vercel.app/",
   },
   {
     title: "Creto Content Studio",
@@ -89,7 +89,7 @@ const demoProjects = [
     summary: "Preview a content-led website concept for publishing articles, business updates and structured editorial pages.",
     focus: "Content presentation · Editorial design · CMS concept",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1100&q=85",
-    url: "https://creto-content-studio-tenzings-projects.vercel.app",
+    url: "https://creto-content-studio.vercel.app/",
   },
 ];
 
