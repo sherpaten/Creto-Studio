@@ -9,7 +9,6 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: .12 } } };
 const members = [
   { name: "Tenzing Norkay Sherpa", role: "CEO, Founder & Lead Developer", bio: "Leads the studio's direction and brings business goals, product thinking and software engineering together.", photo: "/Tenzing.png" },
   { name: "Dawa Theeng", role: "Co-Founder & Creative Director", bio: "Guides creative direction and shapes clear visual identities and thoughtful digital experiences.", photo: "/Dawa.jpeg" },
-  { name: "Rekha Bhatarai", role: "CFO & Marketing Head", bio: "Supports financial planning and marketing strategy, helping the studio make considered decisions as it grows.", photo: "/Rekha.jpeg" },
   { name: "Pemba Gelu Sherpa", role: "Chief Technology Officer", bio: "Oversees technical direction and helps deliver reliable, maintainable digital solutions.", photo: "/Pemba.jpeg" },
 ];
 
@@ -23,7 +22,7 @@ export default function Team() {
           <motion.h2 variants={fadeUp} className="mb-5 text-3xl font-bold tracking-tight text-white sm:text-5xl">Meet the people behind Creto.</motion.h2>
           <motion.p variants={fadeUp} className="mx-auto max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">Our leadership team brings together creative direction, technology, business operations and marketing. Different perspectives help us approach each project with care, clarity and a shared focus on the people it serves.</motion.p>
         </div>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
           {members.map((m) => (
             <motion.article key={m.name} variants={fadeUp} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#0D1A2E] shadow-[0_18px_55px_rgba(0,0,0,.2)] transition duration-300 hover:-translate-y-1 hover:border-[#278FEA]/50">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#102746]">
