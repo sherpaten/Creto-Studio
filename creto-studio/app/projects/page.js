@@ -28,7 +28,7 @@ export default function ProjectsPage() {
       />
       <main>
         <Projects detailed />
-        <section className="bg-[#D8E9F3] py-20 sm:py-28">
+        <section className="bg-[#CFE8F7] py-20 sm:py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-3xl">
               <p className="mb-3 text-xs tracking-[.22em] text-[#0878C8]">WHAT WE BRING TO A PROJECT</p>
