@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -62,7 +61,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, scale: .96, y: 16 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .9, delay: .25 }} className="relative hidden min-h-[430px] items-center justify-center lg:flex">
+        <div className="relative hidden min-h-[430px] items-center justify-center lg:flex">
           <div className="absolute h-[360px] w-[360px] rounded-full border border-[#27B7FF]/25 shadow-[0_0_90px_rgba(0,119,255,.12)]" />
           <div className="absolute h-[290px] w-[290px] rounded-full border border-dashed border-[#54C7FF]/30" />
           <div className="absolute h-[220px] w-[220px] rounded-full bg-gradient-to-br from-[#0878E8]/25 to-[#13D4F5]/10 blur-2xl" />
@@ -79,12 +78,12 @@ export default function Hero() {
             <p className="text-[9px] font-bold uppercase tracking-[.2em] text-[#6CCEFF]">Built around you</p>
             <p className="mt-1 text-sm font-semibold text-white">Design · Build · Grow</p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs tracking-wide text-blue-100/55 lg:flex">
+      <div className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs tracking-wide text-blue-100/55 lg:flex animate-bounce">
         <ChevronDown size={15} /> Scroll to explore
-      </motion.div>
+      </div>
     </section>
   );
 }
