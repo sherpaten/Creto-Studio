@@ -136,7 +136,7 @@ export default function Footer() {
 
       <div className="w-full border-t border-black/10">
 
-        <div className="max-w-[1400px] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="max-w-[1400px] mx-auto px-8 py-[61.5px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
 
           {/* =================================================
               BRAND COLUMN
