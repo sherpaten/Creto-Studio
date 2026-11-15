@@ -59,7 +59,7 @@ const demoProjects = [
     title: "Creto Commerce",
     platform: "Medusa",
     category: "E-commerce platform",
-    summary: "Explore a responsive sample storefront with product photography, a working demo bag and a guided checkout preview.",
+    summary: "A storefront concept for brands that need a polished way to present products, organise collections and guide shoppers from discovery to checkout. The preview includes sample products and a demo shopping journey.",
     focus: "Product catalogue · Shopping bag · Demo checkout",
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1100&q=85",
     url: "https://creto-commerce-demo.vercel.app/",
@@ -68,7 +68,7 @@ const demoProjects = [
     title: "Creto Commerce Pro",
     platform: "Saleor",
     category: "Headless commerce",
-    summary: "Explore a premium storefront concept with curated product imagery and an interactive sample shopping journey.",
+    summary: "A more premium commerce concept focused on product storytelling, considered presentation and a smooth browsing experience. Explore curated sample products and an interactive shopping journey.",
     focus: "Headless storefront concept · Product catalogue · Shopping journey",
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1100&q=85",
     url: "https://creto-commerce-pro.vercel.app/",
@@ -77,7 +77,7 @@ const demoProjects = [
     title: "Creto Operations",
     platform: "Appsmith",
     category: "Business dashboard",
-    summary: "Preview a business operations workspace concept for monitoring sample KPIs, reviewing records and exploring team workflows.",
+    summary: "A central workspace concept that brings business information into one view. Explore sample performance indicators, operational records and workflow-focused dashboard layouts.",
     focus: "Operations dashboard · Sample data · Workflow tools",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=85",
     url: "https://creto-operations.vercel.app/",
@@ -86,7 +86,7 @@ const demoProjects = [
     title: "Creto Content Studio",
     platform: "Wagtail",
     category: "CMS-powered website",
-    summary: "Preview a content-led website concept for publishing articles, business updates and structured editorial pages.",
+    summary: "A publishing-focused website concept for teams that need to organise articles, share updates and present information in a consistent editorial experience.",
     focus: "Content presentation · Editorial design · CMS concept",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1100&q=85",
     url: "https://creto-content-studio.vercel.app/",
@@ -134,8 +134,27 @@ export default function Projects({ detailed = false }) {
           <p className="mb-4 text-xs font-bold uppercase tracking-[.25em] text-[#0878C8]">Selected work</p>
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-[#102744] sm:text-5xl">Ideas made tangible.</h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">A selection of digital experiences across community, education, local services and commerce. Each brief brings a different audience and challenge, so we shape the structure, content and technology around what the project needs.</p>
+          {detailed && <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-500">Some examples are live websites created for real organisations; others are independent concept demos built to explore what a focused digital product can do. Browse the work, see the thinking behind it and open the demos to experience the interfaces.</p>}
         </motion.div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 sm:gap-8">{projects.map((project) => <ProjectCard key={project.title} project={project} detailed={detailed} />)}</div>
+        {detailed && (
+          <motion.section variants={fadeUp} className="mt-20 grid gap-8 overflow-hidden rounded-3xl border border-[#DDE5EC] bg-white p-7 shadow-sm sm:grid-cols-[1.05fr_.95fr] sm:items-center sm:p-10 lg:p-12">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[.22em] text-[#0878C8]">The thinking behind the build</p>
+              <h3 className="text-2xl leading-tight tracking-tight text-[#102744] sm:text-3xl">Good digital work starts with understanding the people who use it.</h3>
+              <p className="mt-4 text-sm leading-7 text-slate-600">We look beyond the screen to understand the organisation, its audience and the task a website or product needs to make easier. That helps us create experiences that feel clear to visitors and practical for the teams managing them.</p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="border-l-2 border-[#20B9FF] pl-4"><p className="text-sm font-semibold text-[#102744]">Purpose before pixels</p><p className="mt-1 text-xs leading-6 text-slate-500">Start with goals, audiences and useful content.</p></div>
+                <div className="border-l-2 border-[#20B9FF] pl-4"><p className="text-sm font-semibold text-[#102744]">Designed for real use</p><p className="mt-1 text-xs leading-6 text-slate-500">Make journeys intuitive across screens and devices.</p></div>
+              </div>
+            </div>
+            <div className="relative min-h-[250px] overflow-hidden rounded-2xl bg-[#EAF1F7] sm:min-h-[320px]">
+              <Image src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Bright collaborative workspace representing thoughtful digital project planning" fill sizes="(max-width: 640px) 100vw, 45vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#06152F]/55 via-transparent to-transparent" />
+              <span className="absolute bottom-5 left-5 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-semibold text-[#102744]">Strategy · Design · Development</span>
+            </div>
+          </motion.section>
+        )}
         {detailed && (
           <motion.section variants={fadeUp} className="mt-20 border-t border-[#D9E1E8] pt-16">
             <div className="mb-10 max-w-3xl">
