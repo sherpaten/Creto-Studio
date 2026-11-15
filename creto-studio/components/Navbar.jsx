@@ -31,7 +31,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#EAE4D8] bg-[#FFFCF5]/95 backdrop-blur-2xl transition-shadow ${scrolled ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
+    <header className={`fixed inset-x-0 top-0 z-[70] border-b border-[#EAE4D8] transition-shadow ${open ? "bg-[#050B18]" : "bg-[#FFFCF5]/95 backdrop-blur-2xl"} ${scrolled && !open ? "shadow-[0_10px_35px_rgba(5,11,24,.10)]" : ""}`}>
       <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link href="/" aria-label="Creto Studio home" onClick={() => setOpen(false)} className="shrink-0">
           <Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-12 w-auto object-contain" />
@@ -49,12 +49,25 @@ export default function Navbar() {
         </div>
       </nav>
       <AnimatePresence>
-        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] bg-[#050B18] px-7 py-6 text-white xl:hidden">
-          <div className="flex items-center justify-between"><Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-12 w-auto object-contain" /><button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3"><X size={22} /></button></div>
-          <motion.div initial="hidden" animate="show" className="mt-16 flex flex-col gap-5">
-            {links.map((link, i) => <motion.div key={link.href} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * .05 }}><Link href={link.href} onClick={() => setOpen(false)} className="text-2xl font-semibold tracking-tight">{link.label}<span className="ml-3 text-[#54B8FF]">↗</span></Link></motion.div>)}
-          </motion.div>
-          <p className="absolute bottom-8 left-7 text-xs tracking-[.2em] text-blue-200/55">TECHNOLOGY · DESIGN · GROWTH</p>
+        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="fixed inset-0 z-[100] flex min-h-[100dvh] flex-col bg-[#050B18] px-6 pb-8 pt-5 text-white xl:hidden sm:px-8">
+          <div className="flex h-[60px] shrink-0 items-center justify-between border-b border-white/10 pb-4">
+            <Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-11 w-auto object-contain" />
+            <button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3 transition hover:border-[#54B8FF] hover:text-[#54B8FF]"><X size={22} /></button>
+          </div>
+          <motion.nav initial="hidden" animate="show" aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-5 py-10 sm:gap-6">
+            {links.map((link, i) => {
+              const active = pathname === link.href || (link.href === "/services" && pathname.startsWith("/services/"));
+              return <motion.div key={link.href} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .055, duration: .24 }}>
+                <Link href={link.href} onClick={() => setOpen(false)} aria-current={active ? "page" : undefined} className={`inline-flex items-center gap-3 py-1 text-3xl font-semibold tracking-tight transition-colors sm:text-4xl ${active ? "text-[#54B8FF]" : "text-white hover:text-[#54B8FF]"}`}>
+                  {link.label}<span aria-hidden="true" className="text-lg text-[#54B8FF]">↗</span>
+                </Link>
+              </motion.div>;
+            })}
+          </motion.nav>
+          <div className="shrink-0 border-t border-white/10 pt-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-blue-200/65">Technology · Design · Growth</p>
+            <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#54B8FF]">Start a project <span aria-hidden="true">↗</span></Link>
+          </div>
         </motion.div>}
       </AnimatePresence>
     </header>
