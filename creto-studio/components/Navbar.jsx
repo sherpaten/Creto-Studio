@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
 import { Menu, X, Music, Music2 } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useSound } from "./SoundProvider";
@@ -49,7 +50,7 @@ export default function Navbar() {
         </div>
       </nav>
       <AnimatePresence>
-        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="fixed left-0 top-0 z-[200] flex h-[100dvh] min-h-[100svh] w-screen flex-col overflow-y-auto bg-white px-6 pb-8 pt-5 text-[#17243A] shadow-2xl [isolation:isolate] xl:hidden sm:px-8">
+        {open && typeof document !== "undefined" && createPortal(<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="fixed inset-0 z-[9999] flex h-[100dvh] min-h-[100svh] w-screen flex-col overflow-y-auto bg-white !opacity-100 px-6 pb-8 pt-5 text-[#17243A] shadow-2xl [isolation:isolate] xl:hidden sm:px-8">
           <div className="flex h-[68px] min-h-[68px] shrink-0 items-center justify-between border-b border-[#EAE4D8] pb-4">
             <Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-11 w-auto object-contain" />
             <button onClick={() => setOpen(false)} aria-label="Close navigation" className="flex h-12 w-12 items-center justify-center rounded-full border border-[#DCE3EC] bg-white text-[#17243A] transition hover:border-[#54B8FF] hover:bg-[#F2F8FF] hover:text-[#0759D6]"><X size={22} /></button>
@@ -68,7 +69,7 @@ export default function Navbar() {
             <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#64748B]">Technology · Design · Growth</p>
             <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#0759D6]">Start a project <span aria-hidden="true">↗</span></Link>
           </div>
-        </motion.div>}
+        </motion.div>, document.body)}
       </AnimatePresence>
     </header>
   );
