@@ -20,7 +20,7 @@ export default function Process() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map(({ number, icon: Icon, title, description }, index) => (
+          {steps.map(({ number, icon: Icon, title, description }) => (
             <article
               key={number}
               className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7"
