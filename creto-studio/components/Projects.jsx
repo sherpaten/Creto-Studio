@@ -71,7 +71,7 @@ const demoProjects = [
     summary: "Explore a premium storefront concept with curated product imagery and an interactive sample shopping journey.",
     focus: "Headless storefront concept · Product catalogue · Shopping journey",
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1100&q=85",
-    url: "https://creto-commerce-pro-tenzings-projects.vercel.app",
+    url: "https://creto-commerce-pro.vercel.app/",
   },
   {
     title: "Creto Operations",
