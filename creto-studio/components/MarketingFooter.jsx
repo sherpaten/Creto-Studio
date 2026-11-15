@@ -30,7 +30,7 @@ export default function MarketingFooter() {
           <p className="max-w-sm text-base leading-7 text-slate-700">
             We design and build thoughtful digital products that help ambitious businesses move forward.
           </p>
-          <a href="https://wa.me/9779747457986" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#0759D6] px-5 py-3 text-sm font-semibold transition hover:bg-[#0878E8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#67C5FF]">
+          <a href="https://wa.me/9779747457986" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#0759D6] px-5 py-3 text-[15px] font-bold text-white transition hover:bg-[#0878E8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#67C5FF]">
             Start a conversation <ArrowUpRight size={16} aria-hidden="true" />
           </a>
           <div className="mt-5">
