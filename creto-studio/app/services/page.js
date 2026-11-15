@@ -107,6 +107,36 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        <section className="border-y border-[#C5DCEB] bg-[#D8E9F3] py-20 text-[#102744] sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[.22em] text-[#0878C8]">What we bring to a project</p>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#102744] sm:text-4xl">More than a good-looking interface.</h2>
+              <p className="mt-5 text-base leading-8 text-slate-700">A successful digital project needs to work for the people using it and the people running it. We consider the full experience, from structure and content to responsive design, performance, maintainability and the actions visitors need to take. The goal is not simply to launch another website; it is to create a useful digital experience that supports the organisation behind it.</p>
+            </div>
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Websites & digital platforms", "Responsive, content-rich websites that communicate your value, make information easy to find and guide visitors towards meaningful action."],
+                ["E-commerce experiences", "Product-led storefronts with clear collections, considered product presentation and customer journeys designed to make browsing simple."],
+                ["Business tools & dashboards", "Practical digital workspaces that bring information, operational views and everyday workflows into a more organised experience."],
+                ["Product design & development", "Purpose-built interfaces and applications shaped around the needs of a particular audience, organisation or service."],
+              ].map(([title, text]) => (
+                <article key={title} className="rounded-2xl border border-[#D5E2EA] bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#102744]">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl border border-[#C5DCEB] bg-white p-7 sm:flex-row sm:items-center sm:p-9">
+              <div>
+                <h3 className="text-xl font-semibold text-[#102744]">Your project could be next.</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">Share your idea and let's explore what a useful, well-built solution could look like.</p>
+              </div>
+              <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0759D6] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0878E8]">Discuss your project <ArrowUpRight size={16} /></Link>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 sm:py-24">
           <div className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">How we work</p>
