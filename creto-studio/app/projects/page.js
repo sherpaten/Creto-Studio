@@ -6,13 +6,14 @@ import MarketingFooter from "@/components/MarketingFooter";
 
 export const metadata = {
   title: "Our Projects",
-  description: "Explore Creto Studio's selected websites, digital experiences and product concepts across community, education, services and commerce.",
+  description: "Explore Creto Studio's website projects, digital products and interactive demos across community, education, local services, commerce and business tools.",
 };
 
 const capabilities = [
-  { title: "Websites & digital platforms", text: "Clear, responsive websites that explain what you do, make information easy to find and give visitors a useful next step." },
-  { title: "E-commerce experiences", text: "Product-focused storefronts that organise collections, communicate value and make browsing straightforward." },
-  { title: "Purpose-built applications", text: "Digital tools and platforms shaped around a particular audience, workflow or service." },
+  { title: "Websites & digital platforms", text: "Responsive, content-rich websites that communicate your value, make information easy to find and guide visitors towards meaningful action." },
+  { title: "E-commerce experiences", text: "Product-led storefronts with clear collections, considered product presentation and customer journeys designed to make browsing simple." },
+  { title: "Business tools & dashboards", text: "Practical digital workspaces that bring information, operational views and everyday workflows into a more organised experience." },
+  { title: "Product design & development", text: "Purpose-built interfaces and applications shaped around the needs of a particular audience, organisation or service." },
 ];
 
 export default function ProjectsPage() {
@@ -23,7 +24,7 @@ export default function ProjectsPage() {
         eyebrow="SELECTED WORK"
         title="Ideas made"
         accent="tangible."
-        description="Explore a selection of digital work and project examples across community, education, local services and commerce. Each project starts with a different goal, audience and set of practical needs."
+        description="Explore websites, digital products and interactive demos created around real goals. From community platforms and service websites to commerce and business tools, each example shows a different way thoughtful digital design can make work easier."
       />
       <main>
         <Projects detailed />
@@ -32,12 +33,12 @@ export default function ProjectsPage() {
             <div className="max-w-3xl">
               <p className="mb-3 text-xs tracking-[.22em] text-[#0878C8]">WHAT WE BRING TO A PROJECT</p>
               <h2 className="text-3xl leading-tight text-[#102744] sm:text-4xl">More than a good-looking interface.</h2>
-              <p className="mt-5 text-base leading-8 text-slate-600">A successful digital project needs to work for the people using it and the people running it. We consider the full experience, from structure and content to performance, maintainability and the actions visitors need to take.</p>
+              <p className="mt-5 text-base leading-8 text-slate-600">A successful digital project needs to work for the people using it and the people running it. We consider the full experience, from structure and content to responsive design, performance, maintainability and the actions visitors need to take. The goal is not simply to launch another website; it is to create a useful digital experience that supports the organisation behind it.</p>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-3">
+            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {capabilities.map((item) => (
                 <article key={item.title} className="rounded-2xl border border-[#E0E6EC] bg-white p-6 shadow-sm sm:p-8">
-                  <h3 className="text-xl text-[#102744]">{item.title}</h3>
+                  <h3 className="text-lg text-[#102744]">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
                 </article>
               ))}
