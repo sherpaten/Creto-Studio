@@ -54,22 +54,22 @@ export default function ServicesPage() {
         </div>
       </header>
 
-      <main>
-        <section id="our-services" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 lg:px-8 sm:py-24">
+      <main className="w-full min-w-0 overflow-hidden">
+        <section id="our-services" className="mx-auto box-border w-full max-w-7xl scroll-mt-24 px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           <div className="mb-12 max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">Our capabilities</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">The right expertise, for your next step.</h2>
             <p className="mt-5 text-base leading-8 text-blue-100/70">Every business has a different challenge. Choose a focused service or combine capabilities into one connected project. Each service below outlines what we can help you plan, create and improve.</p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map(({ slug, icon: Icon, title, text, detail, includes, bestFor, image }, i) => (
-              <article key={slug} className="group relative isolate flex min-h-[610px] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#09172D] shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#36B9FF]/65 hover:shadow-[0_20px_55px_rgba(0,100,220,.22)]">
+              <article key={slug} className="group relative isolate flex min-w-0 w-full min-h-[610px] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#09172D] shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#36B9FF]/65 hover:shadow-[0_20px_55px_rgba(0,100,220,.22)]">
                 <div className="relative h-48 overflow-hidden">
                   <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={72} loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#09172D] to-transparent" />
                   <span className="absolute left-6 top-5 rounded-full border border-white/20 bg-[#041126]/65 px-3 py-1.5 text-[11px] font-semibold tracking-[.16em] text-[#C3E9FF] backdrop-blur">0{i + 1} / SERVICE</span>
                 </div>
-                <div className="flex flex-1 flex-col px-7 pb-7">
+                <div className="flex min-w-0 flex-1 flex-col px-6 pb-7 sm:px-7">
                   <div className="-mt-7 mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-[#0878E8] text-white shadow-lg shadow-blue-950/40"><Icon size={22} /></div>
                   <h3 className="text-xl font-semibold text-white">{title}</h3>
                   <p className="mt-3 text-sm font-medium leading-7 text-blue-50/90">{text}</p>
