@@ -49,22 +49,22 @@ export default function Navbar() {
         </div>
       </nav>
       <AnimatePresence>
-        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="fixed inset-0 z-[100] flex min-h-[100dvh] flex-col bg-[#050B18] px-6 pb-8 pt-5 text-white xl:hidden sm:px-8">
-          <div className="flex h-[60px] shrink-0 items-center justify-between border-b border-white/10 pb-4">
+        {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="fixed left-0 top-0 z-[200] flex h-[100dvh] min-h-[100svh] w-screen flex-col overflow-y-auto bg-[#050B18] px-6 pb-8 pt-5 text-white shadow-2xl [isolation:isolate] xl:hidden sm:px-8">
+          <div className="flex h-[68px] min-h-[68px] shrink-0 items-center justify-between border-b border-white/10 pb-4">
             <Image src="/logo.png" alt="Creto Studio" width={144} height={96} priority sizes="144px" className="h-11 w-auto object-contain" />
-            <button onClick={() => setOpen(false)} aria-label="Close navigation" className="rounded-full border border-white/20 p-3 transition hover:border-[#54B8FF] hover:text-[#54B8FF]"><X size={22} /></button>
+            <button onClick={() => setOpen(false)} aria-label="Close navigation" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/[.04] transition hover:border-[#54B8FF] hover:bg-white/[.08] hover:text-[#54B8FF]"><X size={22} /></button>
           </div>
-          <motion.nav initial="hidden" animate="show" aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-5 py-10 sm:gap-6">
+          <motion.nav initial="hidden" animate="show" aria-label="Mobile navigation" className="flex min-h-0 flex-1 flex-col justify-center gap-4 py-10 sm:gap-5">
             {links.map((link, i) => {
               const active = pathname === link.href || (link.href === "/services" && pathname.startsWith("/services/"));
               return <motion.div key={link.href} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .055, duration: .24 }}>
-                <Link href={link.href} onClick={() => setOpen(false)} aria-current={active ? "page" : undefined} className={`inline-flex items-center gap-3 py-1 text-3xl font-semibold tracking-tight transition-colors sm:text-4xl ${active ? "text-[#54B8FF]" : "text-white hover:text-[#54B8FF]"}`}>
-                  {link.label}<span aria-hidden="true" className="text-lg text-[#54B8FF]">↗</span>
+                <Link href={link.href} onClick={() => setOpen(false)} aria-current={active ? "page" : undefined} className={`flex w-full items-center justify-between border-b border-white/[.07] py-3 text-[clamp(1.65rem,7vw,2.5rem)] font-semibold tracking-tight transition-colors ${active ? "text-[#54B8FF]" : "text-white hover:text-[#54B8FF]"}`}>
+                  {link.label}<span aria-hidden="true" className="mr-1 text-xl text-[#54B8FF]">↗</span>
                 </Link>
               </motion.div>;
             })}
           </motion.nav>
-          <div className="shrink-0 border-t border-white/10 pt-5">
+          <div className="mt-auto shrink-0 border-t border-white/10 pt-5">
             <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-blue-200/65">Technology · Design · Growth</p>
             <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#54B8FF]">Start a project <span aria-hidden="true">↗</span></Link>
           </div>
