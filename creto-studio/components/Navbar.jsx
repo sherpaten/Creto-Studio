@@ -62,7 +62,7 @@ export default function Navbar() {
             {links.map((link) => {
               const active = pathname === link.href || (link.href === "/services" && pathname.startsWith("/services/"));
               return (
-                <Link key={link.href} href={link.href} className={`text-sm font-semibold transition-colors ${active ? "text-[#0759D6]" : "text-[#26354A] hover:text-[#0759D6]"}`}>
+                <Link key={link.href} href={link.href} className={`text-[15px] font-bold transition-colors ${active ? "text-[#0759D6]" : "text-[#26354A] hover:text-[#0759D6]"}`}>
                   {link.label}
                 </Link>
               );
@@ -74,7 +74,7 @@ export default function Navbar() {
               {musicMuted ? <Music2 size={19} /> : <Music size={19} />}
             </button>
             <MagneticButton>
-              <Link href="/contact" className="hidden rounded-full border border-[#3AB8FF]/30 bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_28px_rgba(7,89,214,.28)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_34px_rgba(32,185,255,.25)] lg:inline-flex">
+              <Link href="/contact" className="hidden rounded-full border border-[#3AB8FF]/30 bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-6 py-3 text-[15px] font-bold text-white shadow-[0_8px_28px_rgba(7,89,214,.28)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_34px_rgba(32,185,255,.25)] lg:inline-flex">
                 Start a project <span className="ml-2">↗</span>
               </Link>
             </MagneticButton>
