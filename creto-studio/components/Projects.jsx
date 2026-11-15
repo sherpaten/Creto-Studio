@@ -25,6 +25,15 @@ const projects = [
     featured: true,
   },
   {
+    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1100&q=85",
+    title: "Customize Ans",
+    category: "Custom Fashion · Wearable Art",
+    summary: "A creative fashion website for transforming customer-provided garments into unique, personal expressions through hand painting, patchwork, embroidery and other custom techniques.",
+    scope: ["Custom garment transformation", "Hand painting, patchwork and embroidery", "A visual showcase for personalised wearable art"],
+    url: "https://customizeans.vercel.app/",
+    action: "Visit live website",
+  },
+  {
     image: "/E-learn.png",
     title: "E-Learn Platform",
     category: "Education Platform",
