@@ -135,7 +135,7 @@ function ProjectCard({ project, detailed }) {
 
 export default function Projects({ detailed = false }) {
   return (
-    <section id="projects" className="relative overflow-hidden bg-[#F8F5EE] py-24 sm:py-32">
+    <section id="projects" className="relative overflow-hidden bg-[#EAF3F8] py-24 sm:py-32">
       <div className="pointer-events-none absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-[#DCEBFA]/55 blur-[100px]" />
       <div className="pointer-events-none absolute right-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#A9CBE8]/70 to-transparent" />
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: .15 }} className="relative mx-auto max-w-7xl px-6 lg:px-8">
