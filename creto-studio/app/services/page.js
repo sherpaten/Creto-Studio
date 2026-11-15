@@ -1,56 +1,89 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Code2, ShoppingBag, Smartphone, PanelsTopLeft, BrainCircuit, Search, Share2, Compass, Layers3, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Code2, ShoppingBag, Smartphone, PanelsTopLeft, BrainCircuit, Search, Share2, Compass, Layers3, TrendingUp, Target, ShieldCheck, Gauge, Headphones } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import PageIntro from "@/components/PageIntro";
 import MarketingFooter from "@/components/MarketingFooter";
 
 export const metadata = {
   title: "Digital Services",
-  description: "Explore web development, e-commerce, mobile apps, UI/UX, AI software and digital growth services from Creto Studio.",
+  description: "Explore Creto Studio's website development, e-commerce, mobile apps, UI/UX design, AI software, SEO and social media services.",
 };
 
 const services = [
-  { slug: "web-development", icon: Code2, title: "Website Development", text: "Fast, responsive websites and web applications that make your business easier to discover, understand and choose.", detail: "From business websites to custom web applications, we focus on clear content, reliable functionality, responsive layouts and strong technical foundations.", bestFor: "Businesses building or refreshing their digital presence.", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "ecommerce", icon: ShoppingBag, title: "E-commerce Development", text: "Online stores with clear product journeys, smooth checkout experiences and room to grow.", detail: "We bring product presentation, store structure and purchasing flows together to make online shopping straightforward for customers and manageable for your team.", bestFor: "Brands and retailers ready to sell online.", image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "mobile-app-development", icon: Smartphone, title: "Mobile App Development", text: "Useful Android, iOS and cross-platform apps designed around the people who use them.", detail: "We help shape mobile product ideas into practical experiences, considering user flows, interface design, integrations and the needs of everyday use.", bestFor: "Services and products that need a dedicated mobile experience.", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "ui-ux-design", icon: PanelsTopLeft, title: "UI/UX Design", text: "Intuitive interfaces, thoughtful user journeys and product experiences that feel effortless.", detail: "We organise information, map user journeys and design clear interfaces so people can understand a product and complete important tasks with confidence.", bestFor: "Websites, apps and platforms that need a clearer user experience.", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "ai-software", icon: BrainCircuit, title: "AI & Software Solutions", text: "Custom software, practical AI integrations and automation for the work that matters.", detail: "We look for useful opportunities to connect systems, reduce repetitive work and build tools around the way your organisation operates.", bestFor: "Teams looking to improve workflows or build custom tools.", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "digital-marketing", icon: Search, title: "SEO & Digital Marketing", text: "Search-ready foundations and digital campaigns that help the right customers find you.", detail: "We help strengthen your online visibility through technical SEO, useful content planning, analytics and campaigns guided by clear objectives.", bestFor: "Businesses aiming to improve discoverability and reach.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=75" },
-  { slug: "social-media-management", icon: Share2, title: "Social Media Management", text: "Consistent content planning and channel management that build a recognisable online presence.", detail: "We support a consistent brand voice through content planning, creative direction, publishing and ongoing review of what resonates with your audience.", bestFor: "Brands that want a more consistent social presence.", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "web-development", icon: Code2, title: "Website Development", text: "A clear, credible online presence that helps people understand your business and take the next step.", detail: "We plan and build responsive business websites, landing pages and custom web applications, with thoughtful structure, accessible interfaces and dependable functionality.", includes: ["Business and marketing websites", "Custom web applications", "Responsive development", "Performance and technical foundations"], bestFor: "Businesses launching, refreshing or scaling their digital presence.", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "ecommerce", icon: ShoppingBag, title: "E-commerce Development", text: "A smoother shopping experience that makes it easier to explore products and complete a purchase.", detail: "From storefront structure to product presentation and checkout journeys, we create online shopping experiences that work for customers and your team.", includes: ["Online store design and development", "Product and category organisation", "Shopping cart and checkout journeys", "Store management foundations"], bestFor: "Retailers, makers and growing brands ready to sell online.", image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "mobile-app-development", icon: Smartphone, title: "Mobile App Development", text: "Useful mobile experiences designed around real customer needs and everyday use.", detail: "We help turn product ideas into practical Android, iOS and cross-platform experiences, considering user flows, interface design and integrations.", includes: ["Product and feature planning", "iOS and Android experiences", "Cross-platform application development", "API and service integrations"], bestFor: "Businesses and products that need a dedicated mobile experience.", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "ui-ux-design", icon: PanelsTopLeft, title: "UI/UX Design", text: "Intuitive interfaces and considered journeys that help people use your product with confidence.", detail: "We organise information, map user journeys and shape visual systems so digital products feel clear, consistent and easy to navigate.", includes: ["User flows and information architecture", "Wireframes and prototypes", "Visual interface design", "Design systems and handoff"], bestFor: "Websites, apps and platforms that need a more useful experience.", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "ai-software", icon: BrainCircuit, title: "AI & Software Solutions", text: "Practical tools and automation that make complex work simpler and more connected.", detail: "We identify useful opportunities to connect systems, reduce repetitive tasks and build custom software around the way your organisation works.", includes: ["Custom business software", "AI-powered features and assistants", "Workflow automation", "System and API integrations"], bestFor: "Teams improving internal workflows or building new digital tools.", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "digital-marketing", icon: Search, title: "SEO & Digital Marketing", text: "Stronger search foundations and focused digital activity that help the right people find you.", detail: "We improve discoverability through technical SEO, useful content planning, analytics and campaigns shaped around measurable business objectives.", includes: ["Technical and on-page SEO", "Keyword and content planning", "Analytics and performance review", "Digital campaign support"], bestFor: "Businesses looking to grow qualified traffic and online reach.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=75" },
+  { slug: "social-media-management", icon: Share2, title: "Social Media Management", text: "A consistent brand voice and content rhythm across the channels your audience uses.", detail: "We support your social presence with content planning, creative direction, publishing and regular review of what resonates with your audience.", includes: ["Content calendars and planning", "Creative and post design", "Publishing and channel management", "Performance review and refinement"], bestFor: "Brands that want a more consistent and considered social presence.", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1000&q=75" },
 ];
 
-const approach = [
-  { icon: Compass, title: "Start with the goal", text: "We learn about your audience, business priorities and the problem the work needs to solve before recommending a direction." },
-  { icon: Layers3, title: "Connect the right capabilities", text: "Some projects need one focused service. Others benefit from a connected mix of strategy, design, development and content." },
-  { icon: TrendingUp, title: "Build for what comes next", text: "We consider performance, usability and maintainability so your digital presence has a foundation you can continue to improve." },
+const principles = [
+  { icon: Target, title: "Clear project goals", text: "We agree on the audience, priorities and outcomes before choosing the solution." },
+  { icon: ShieldCheck, title: "Thoughtful execution", text: "We pay attention to usability, quality and the details that make a product dependable." },
+  { icon: Gauge, title: "Built to perform", text: "Responsive layouts, sensible technical foundations and performance are part of the process." },
+  { icon: Headphones, title: "Support beyond launch", text: "We can help you improve, maintain and grow your digital presence as needs change." },
+];
+
+const process = [
+  { number: "01", title: "Discover", text: "We listen, understand your business and define what success should look like." },
+  { number: "02", title: "Plan & design", text: "We shape the scope, user journey and creative direction before development begins." },
+  { number: "03", title: "Build & refine", text: "We develop, test and review the work, keeping you informed along the way." },
+  { number: "04", title: "Launch & grow", text: "We prepare the launch and identify practical next steps for ongoing improvement." },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#050B18]">
       <Navbar />
-      <PageIntro eyebrow="WHAT WE DO" title="Everything you need to" accent="move your business forward." description="One connected team for strategy, design, development and digital growth. Explore the capabilities that can help turn your next idea into a real product." />
+      <header className="relative isolate flex min-h-[590px] items-center overflow-hidden border-b border-white/10 sm:min-h-[650px]">
+        <Image src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=85" alt="A bright, modern creative workspace" fill priority sizes="100vw" quality={85} className="absolute inset-0 -z-30 object-cover" />
+        <div aria-hidden="true" className="absolute inset-0 -z-20 bg-[#041126]/75" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[#041126] via-[#041126]/85 to-[#041126]/35" />
+        <div className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[.24em] text-[#8DD8FF]">CRETO STUDIO · WHAT WE DO</p>
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">Digital services that move your business <span className="text-[#79CEFF]">forward.</span></h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-blue-50/85 sm:text-lg">From your first website to a complete digital product, we bring strategy, design and technology together to help your business make its next move.</p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Link href="#our-services" className="inline-flex items-center gap-2 rounded-full bg-[#0878E8] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#20B9FF]">Explore our services <ArrowRight size={17} /></Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/15">Discuss your project <ArrowUpRight size={17} /></Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
       <main>
-        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 sm:py-20">
+        <section id="our-services" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 lg:px-8 sm:py-24">
           <div className="mb-12 max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">Our capabilities</p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">The right expertise, for the next step.</h2>
-            <p className="mt-5 text-base leading-8 text-blue-100/70">Whether you need a stronger website, a new digital product or help reaching the right audience, we can focus on a single priority or bring several capabilities together. Every engagement is shaped around your goals and the people you want to reach.</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">The right expertise, for your next step.</h2>
+            <p className="mt-5 text-base leading-8 text-blue-100/70">Every business has a different challenge. Choose a focused service or combine capabilities into one connected project. Each service below outlines what we can help you plan, create and improve.</p>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map(({ slug, icon: Icon, title, text, detail, bestFor, image }, i) => (
-              <Link key={slug} href={`/services/${slug}`} aria-label={`Explore ${title}`} className="group relative isolate flex min-h-[470px] flex-col justify-end overflow-hidden rounded-3xl border border-white/15 p-7 shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#36B9FF]/65 hover:shadow-[0_20px_55px_rgba(0,100,220,.22)] sm:min-h-[490px]">
-                <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={72} loading="lazy" className="absolute inset-0 -z-20 object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-[#041126] via-[#061D46]/90 to-[#061D46]/25" />
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-[#0878E8]/40 text-white backdrop-blur-md transition group-hover:scale-110 group-hover:bg-[#0878E8]/60"><Icon size={23} /></div>
-                <p className="text-xs font-bold tracking-[.18em] text-[#9DDEFF]">0{i + 1} / SERVICE</p>
-                <h3 className="mt-3 text-xl font-bold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-blue-50/90">{text}</p>
-                <p className="mt-3 text-xs leading-6 text-blue-100/70">{detail}</p>
-                <p className="mt-4 border-t border-white/15 pt-4 text-xs leading-6 text-[#B9E6FF]"><span className="font-bold text-white">A good fit for: </span>{bestFor}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#9DDEFF]">Explore service <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
-              </Link>
+            {services.map(({ slug, icon: Icon, title, text, detail, includes, bestFor, image }, i) => (
+              <article key={slug} className="group relative isolate flex min-h-[610px] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#09172D] shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#36B9FF]/65 hover:shadow-[0_20px_55px_rgba(0,100,220,.22)]">
+                <div className="relative h-48 overflow-hidden">
+                  <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={72} loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#09172D] to-transparent" />
+                  <span className="absolute left-6 top-5 rounded-full border border-white/20 bg-[#041126]/65 px-3 py-1.5 text-[11px] font-semibold tracking-[.16em] text-[#C3E9FF] backdrop-blur">0{i + 1} / SERVICE</span>
+                </div>
+                <div className="flex flex-1 flex-col px-7 pb-7">
+                  <div className="-mt-7 mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-[#0878E8] text-white shadow-lg shadow-blue-950/40"><Icon size={22} /></div>
+                  <h3 className="text-xl font-semibold text-white">{title}</h3>
+                  <p className="mt-3 text-sm font-medium leading-7 text-blue-50/90">{text}</p>
+                  <p className="mt-3 text-sm leading-7 text-blue-100/65">{detail}</p>
+                  <div className="mt-5 border-t border-white/10 pt-5">
+                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8DD8FF]">What we can deliver</p>
+                    <ul className="mt-3 space-y-2">
+                      {includes.map((item) => <li key={item} className="flex gap-2 text-xs leading-5 text-blue-100/75"><span className="mt-1 text-[#62C6FF]">•</span><span>{item}</span></li>)}
+                    </ul>
+                  </div>
+                  <p className="mt-5 text-xs leading-6 text-blue-100/65"><span className="font-semibold text-white">A good fit for: </span>{bestFor}</p>
+                  <Link href={`/services/${slug}`} className="mt-6 inline-flex items-center gap-2 border-t border-white/10 pt-5 text-sm font-semibold text-[#9DDEFF] transition hover:text-white">Explore service <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" /></Link>
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -58,26 +91,47 @@ export default function ServicesPage() {
         <section className="border-y border-white/10 bg-[#07152B] py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">A connected approach</p>
-              <h2 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">More than a list of services.</h2>
-              <p className="mt-5 text-base leading-8 text-blue-100/70">The best solution is not always the biggest one. We help identify what is essential now, what can come later and how each decision supports the wider business. That keeps projects focused, practical and easier to build on.</p>
+              <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">The Creto difference</p>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight text-white sm:text-4xl">Good digital work starts with understanding your business.</h2>
+              <p className="mt-5 text-base leading-8 text-blue-100/70">We do not believe in adding complexity for its own sake. We focus on what your customers need, what your team can manage and what will make a meaningful difference to your goals.</p>
             </div>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {approach.map(({ icon: Icon, title, text }) => (
-                <article key={title} className="rounded-2xl border border-white/10 bg-[#0A2148]/55 p-7">
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {principles.map(({ icon: Icon, title, text }) => (
+                <article key={title} className="rounded-2xl border border-white/10 bg-[#0A2148]/55 p-6">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#58BFFF]/25 bg-[#0759D6]/20 text-[#8DD8FF]"><Icon size={21} /></div>
-                  <h3 className="mt-5 text-xl font-semibold text-white">{title}</h3>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-blue-100/65">{text}</p>
                 </article>
               ))}
             </div>
-            <div className="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl border border-[#168BFF]/25 bg-gradient-to-r from-[#0A2148] to-[#0A1428] p-7 sm:flex-row sm:items-center sm:p-9">
-              <div>
-                <h3 className="text-2xl font-bold text-white">Not sure which service you need?</h3>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-blue-100/70">Tell us what you want to achieve. We can help you work out a sensible starting point.</p>
-              </div>
-              <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0878E8] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#20B9FF]">Talk with us <ArrowUpRight size={16} /></Link>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 sm:py-24">
+          <div className="max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">How we work</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-white sm:text-4xl">A clear path from idea to launch.</h2>
+            <p className="mt-5 text-base leading-8 text-blue-100/70">You will know what happens next and why. We keep the process collaborative, practical and focused on the result.</p>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {process.map(({ number, title, text }) => (
+              <article key={number} className="border-t border-[#258FEA]/50 pt-6">
+                <p className="text-sm font-bold tracking-[.18em] text-[#67C5FF]">{number}</p>
+                <h3 className="mt-4 text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-blue-100/65">{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-t border-white/10 bg-[#07152B] py-16 sm:py-20">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-7 px-6 lg:flex-row lg:items-center lg:px-8">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">Let's talk</p>
+              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">Not sure where to start?</h2>
+              <p className="mt-4 text-base leading-8 text-blue-100/70">Tell us what you are trying to achieve. We will help you identify a sensible starting point and the right capabilities for your project.</p>
             </div>
+            <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0878E8] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#20B9FF]">Start a conversation <ArrowUpRight size={17} /></Link>
           </div>
         </section>
       </main>
