@@ -22,7 +22,7 @@ const serviceLinks = [
 export default function MarketingFooter() {
   return (
     <footer className="border-t border-[#E7E1D6] bg-[#F8F5EE] text-[#172033]">
-      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-9 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/">
             <Image src="/logo.png" alt="Creto Studio" width={144} height={96} sizes="144px" className="mb-4 h-12 w-auto rounded bg-white p-1" />
