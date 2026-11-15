@@ -58,13 +58,13 @@ export default function Footer() {
         ease: "easeOut",
       }}
       viewport={{ once: true }}
-      className="w-full bg-[#0b0e14] text-gray-400"
+      className="w-full bg-[#F8F5EE] text-[#252525]"
     >
       {/* =====================================================
           TOP BLUE SECTION
       ====================================================== */}
 
-      <div className="w-full bg-[#305CDE] px-8 py-10">
+      <div className="w-full bg-[#F1EBDD] px-8 py-10">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* Brand Message */}
@@ -77,11 +77,11 @@ export default function Footer() {
             />
 
             <div>
-              <h3 className="text-white font-bold text-lg">
+              <h3 className="text-[#202020] font-bold text-lg">
                 We design. We build. We elevate
               </h3>
 
-              <p className="text-white/80 text-sm">
+              <p className="text-[#555555] text-sm">
                 brands in the digital world.
               </p>
             </div>
@@ -89,20 +89,20 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="flex items-center gap-4 bg-white/10 p-2 w-full md:w-auto">
+          <div className="flex items-center gap-4 bg-black/5 p-2 w-full md:w-auto">
 
             <Mail
-              className="text-white ml-2 shrink-0"
+              className="text-[#252525] ml-2 shrink-0"
               size={20}
               aria-hidden="true"
             />
 
             <div className="flex flex-col shrink-0">
-              <span className="text-white text-xs font-semibold">
+              <span className="text-[#252525] text-xs font-semibold">
                 Subscribe to our newsletter
               </span>
 
-              <span className="text-white/70 text-[10px]">
+              <span className="text-[#555555] text-[10px]">
                 Stay updated with our latest news
               </span>
             </div>
@@ -111,7 +111,7 @@ export default function Footer() {
               type="email"
               placeholder="Enter your email"
               aria-label="Email address"
-              className="bg-transparent border-none outline-none text-white placeholder:text-white/50 text-sm w-full md:w-48"
+              className="bg-transparent border-none outline-none text-[#252525] placeholder:text-[#777777] text-sm w-full md:w-48"
             />
 
             <button
@@ -134,7 +134,7 @@ export default function Footer() {
           MAIN FOOTER
       ====================================================== */}
 
-      <div className="w-full border-t border-white/5">
+      <div className="w-full border-t border-black/10">
 
         <div className="max-w-[1400px] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
 
@@ -183,14 +183,14 @@ export default function Footer() {
                   rounded-full
                   border
                   border-white/15
-                  bg-white/5
-                  text-white/75
+                  bg-black/5
+                  text-black/70
                   transition-all
                   duration-200
                   hover:-translate-y-1
-                  hover:border-white/25
+                  hover:border-black/25
                   hover:bg-[#305CDE]
-                  hover:text-white
+                  hover:text-[#0878C8]
                   focus:outline-none
                   focus-visible:ring-2
                   focus-visible:ring-[#305CDE]
@@ -225,14 +225,14 @@ export default function Footer() {
                   rounded-full
                   border
                   border-white/15
-                  bg-white/5
-                  text-white/75
+                  bg-black/5
+                  text-black/70
                   transition-all
                   duration-200
                   hover:-translate-y-1
-                  hover:border-white/25
+                  hover:border-black/25
                   hover:bg-[#305CDE]
-                  hover:text-white
+                  hover:text-[#0878C8]
                   focus:outline-none
                   focus-visible:ring-2
                   focus-visible:ring-[#305CDE]
@@ -267,14 +267,14 @@ export default function Footer() {
                   rounded-full
                   border
                   border-white/15
-                  bg-white/5
-                  text-white/75
+                  bg-black/5
+                  text-black/70
                   transition-all
                   duration-200
                   hover:-translate-y-1
-                  hover:border-white/25
+                  hover:border-black/25
                   hover:bg-[#305CDE]
-                  hover:text-white
+                  hover:text-[#0878C8]
                   focus:outline-none
                   focus-visible:ring-2
                   focus-visible:ring-[#305CDE]
@@ -309,14 +309,14 @@ export default function Footer() {
                   rounded-full
                   border
                   border-white/15
-                  bg-white/5
-                  text-white/75
+                  bg-black/5
+                  text-black/70
                   transition-all
                   duration-200
                   hover:-translate-y-1
-                  hover:border-white/25
+                  hover:border-black/25
                   hover:bg-[#305CDE]
-                  hover:text-white
+                  hover:text-[#0878C8]
                   focus:outline-none
                   focus-visible:ring-2
                   focus-visible:ring-[#305CDE]
@@ -363,7 +363,7 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-white font-bold mb-6">
+            <h4 className="text-[#202020] font-bold mb-6">
               Services
             </h4>
 
@@ -385,7 +385,7 @@ export default function Footer() {
                     sectionMap[link] &&
                     scrollToSection(sectionMap[link])
                   }
-                  className="flex items-center gap-2 text-sm cursor-pointer hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#0878C8] transition-colors"
                 >
                   <ChevronRight
                     size={14}
@@ -405,7 +405,7 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-white font-bold mb-6">
+            <h4 className="text-[#202020] font-bold mb-6">
               Company
             </h4>
 
@@ -427,7 +427,7 @@ export default function Footer() {
                   }
                   className={`flex items-center gap-2 text-sm transition-colors ${
                     sectionMap[link]
-                      ? "cursor-pointer hover:text-white"
+                      ? "cursor-pointer hover:text-[#0878C8]"
                       : "cursor-default"
                   }`}
                 >
@@ -449,7 +449,7 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-white font-bold mb-6">
+            <h4 className="text-[#202020] font-bold mb-6">
               Resources
             </h4>
 
@@ -471,7 +471,7 @@ export default function Footer() {
                   }
                   className={`flex items-center gap-2 text-sm transition-colors ${
                     sectionMap[link]
-                      ? "cursor-pointer hover:text-white"
+                      ? "cursor-pointer hover:text-[#0878C8]"
                       : "cursor-default"
                   }`}
                 >
@@ -493,7 +493,7 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-white font-bold mb-6">
+            <h4 className="text-[#202020] font-bold mb-6">
               Contact Us
             </h4>
 
@@ -525,7 +525,7 @@ export default function Footer() {
 
                 <a
                   href="mailto:info@cretostudio.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#0878C8] transition-colors"
                 >
                   info@cretostudio.com
                 </a>
@@ -543,7 +543,7 @@ export default function Footer() {
 
                 <a
                   href="tel:+9779801234567"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#0878C8] transition-colors"
                 >
                   +977 980-1234567
                 </a>
@@ -575,9 +575,9 @@ export default function Footer() {
           BOTTOM FOOTER BAR
       ====================================================== */}
 
-      <div className="w-full border-t border-white/5">
+      <div className="w-full border-t border-black/10">
 
-        <div className="max-w-[1400px] mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <div className="max-w-[1400px] mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center text-xs text-[#555555] gap-4">
 
           {/* Copyright */}
           <p>
@@ -596,7 +596,7 @@ export default function Footer() {
                   );
                 }
               }}
-              className="hover:text-white cursor-pointer transition-colors"
+              className="hover:text-[#0878C8] cursor-pointer transition-colors"
             >
               Privacy Policy
             </button>
@@ -610,7 +610,7 @@ export default function Footer() {
                   );
                 }
               }}
-              className="hover:text-white cursor-pointer transition-colors"
+              className="hover:text-[#0878C8] cursor-pointer transition-colors"
             >
               Terms of Service
             </button>
