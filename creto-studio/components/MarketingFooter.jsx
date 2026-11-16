@@ -6,7 +6,7 @@ const socials = [
   { name: "Facebook", href: "https://www.facebook.com/share/1HnbfpAnRc/", Icon: Facebook },
   { name: "Instagram", href: "https://www.instagram.com/creto421?rpxt=MWxkandzenQ5N3pjNw==", Icon: Instagram },
   { name: "X", href: "https://x.com/Cretostudi5iyb", Icon: null },
-  { name: "LinkedIn", href: "https://www.linkedin.com/company/creto-studio/", Icon: Linkedin },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/creto-studio/posts/?viewAsMember=true", Icon: Linkedin },
 ];
 
 const serviceLinks = [
