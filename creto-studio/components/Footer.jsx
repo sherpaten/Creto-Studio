@@ -253,7 +253,7 @@ export default function Footer() {
               =============================== */}
 
               <a
-                href="https://www.linkedin.com/company/creto-studio/"
+                href="https://www.linkedin.com/company/creto-studio/posts/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Creto Studio on LinkedIn"
