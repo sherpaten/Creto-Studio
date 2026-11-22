@@ -25,6 +25,15 @@ const projects = [
     featured: true,
   },
   {
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1100&q=85",
+    title: "RipTides Grill & Bar",
+    category: "Hospitality · Restaurant Website & Membership",
+    summary: "A digital experience for a restaurant and bar, bringing its online presence and customer membership journey together with a dedicated portal for member registration, secure sign-in and membership management.",
+    scope: ["Restaurant website and customer information", "Membership registration and secure member login", "Member account, access and membership management"],
+    url: "https://riptidesgrillandbar.com/",
+    action: "Visit live website",
+  },
+  {
     image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1100&q=85",
     title: "Customize Ans",
     category: "Custom Fashion · Wearable Art",
