@@ -147,7 +147,7 @@ export default function Projects({ detailed = false }) {
     <section id="projects" className="relative overflow-hidden bg-[#D8E9F3] py-24 sm:py-32">
       <div className="pointer-events-none absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-[#DCEBFA]/55 blur-[100px]" />
       <div className="pointer-events-none absolute right-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#A9CBE8]/70 to-transparent" />
-      <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: .15 }} className="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <motion.div variants={stagger} initial="show" animate="show" className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div variants={fadeUp} className="mb-12 max-w-3xl sm:mb-16">
           <p className="mb-4 text-xs font-bold uppercase tracking-[.25em] text-[#0878C8]">Selected work</p>
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-[#102744] sm:text-5xl">Ideas made tangible.</h2>
