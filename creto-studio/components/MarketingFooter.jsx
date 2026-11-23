@@ -54,6 +54,7 @@ export default function MarketingFooter() {
           <div className="grid gap-2.5 text-base text-slate-700">
             <Link href="/about" className="hover:text-[#0759D6]">About us & our team</Link>
             <Link href="/services" className="transition-colors hover:text-[#0759D6]">Services</Link>
+            <Link href="/packages" className="transition-colors hover:text-[#0759D6]">Packages & pricing</Link>
             <Link href="/projects" className="transition-colors hover:text-[#0759D6]">Projects</Link>
             <Link href="/#process" className="transition-colors hover:text-[#0759D6]">Our process</Link>
             <Link href="/about#team" className="transition-colors hover:text-[#0759D6]">Meet the team</Link>
