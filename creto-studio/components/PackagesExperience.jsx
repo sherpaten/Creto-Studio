@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight, ArrowUpRight, Check, CheckCircle2, ChevronDown, CircleHelp,
-  Code2, Globe2, MapPin, MonitorSmartphone, Play, Share2, Sparkles,
+  Code2, Globe2, MapPin, MonitorSmartphone, Share2, Sparkles,
   Target, Video, Wallet, Zap
 } from "lucide-react";
 
@@ -49,7 +49,6 @@ export default function PackagesExperience() {
   const [expanded, setExpanded] = useState("business-website");
   const market = markets[marketKey];
   const comparison = useMemo(() => market.packages, [market]);
-  const selectedPackage = market.packages.find((item) => item.id === expanded) || market.packages[0];
 
   return (
     <>
