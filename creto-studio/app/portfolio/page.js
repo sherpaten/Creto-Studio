@@ -99,7 +99,7 @@ export default function PortfolioPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl"><p className="text-xs font-bold uppercase tracking-[.22em] text-[#0878C8]">02 · Services & capabilities</p><h2 className="mt-4 text-3xl font-bold text-[#102744] sm:text-4xl">What we can help you create.</h2><p className="mt-4 text-sm leading-7 text-slate-600">Choose a focused service or combine capabilities into a coordinated project. The final scope is tailored to your requirements.</p></div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {services.map(({title,text:body,Icon,group},i)=><article key={title} className="group rounded-2xl border border-[#E0E8F0] bg-white p-6 shadow-[0_8px_28px_rgba(15,35,60,.035)] transition hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(15,35,60,.09)]">
+              {services.map(({title,text:body,Icon,group},i)=><article key={title} className="group rounded-2xl border border-[#E8DDC8] bg-[#FFF8E9] p-6 shadow-[0_8px_28px_rgba(15,35,60,.035)] transition hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(15,35,60,.09)]">
                 <div className="flex items-center justify-between"><span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#0878C8]">{group}</span><span className="text-xs font-semibold text-slate-300">0{i+1}</span></div>
                 <div className="mt-6 flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF4FF] text-[#0759D6]"><Icon size={22}/></div>
                 <h3 className="mt-5 text-lg font-bold text-[#102744]">{title}</h3><p className="mt-2 text-sm leading-7 text-slate-600">{body}</p>
