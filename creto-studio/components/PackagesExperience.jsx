@@ -46,7 +46,7 @@ function Price({ market, value }) {
 
 export default function PackagesExperience() {
   const [marketKey, setMarketKey] = useState("international");
-  const [expanded, setExpanded] = useState("business-website");
+  const [expanded, setExpanded] = useState("");
   const market = markets[marketKey];
   const comparison = useMemo(() => market.packages, [market]);
 
@@ -101,16 +101,16 @@ export default function PackagesExperience() {
             <div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#67C5FF]">{market.label} · {market.currency} pricing</p><h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">Packages built around real business needs.</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-blue-100/65">Explore the scope, deliverables and investment for each service. Select a package to see more detail.</p></div>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-4 py-2 text-xs text-blue-100/65"><Wallet size={15} className="text-[#72CCFF]"/> {market.currency} · {market.label}</span>
           </div>
-          <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-            {market.packages.map((item,index)=><article key={item.id} className={`relative flex flex-col rounded-3xl border p-6 transition duration-200 sm:p-7 ${item.popular?"border-[#3AAEFF]/60 bg-gradient-to-b from-[#0C2545] to-[#09172B] shadow-[0_18px_55px_rgba(0,90,190,.14)]":"border-white/10 bg-[#09172B] hover:border-white/20"}`}>
+          <div className="mt-10 columns-1 gap-5 sm:columns-2 xl:columns-3">
+            {market.packages.map((item,index)=><article key={item.id} className={`relative mb-5 inline-block w-full break-inside-avoid rounded-3xl border p-6 align-top transition duration-200 sm:p-7 ${item.popular?"border-[#3AAEFF]/60 bg-gradient-to-b from-[#0C2545] to-[#09172B] shadow-[0_18px_55px_rgba(0,90,190,.14)]":"border-white/10 bg-[#09172B] hover:border-white/20"}`}>
               {item.popular&&<span className="absolute -top-3 left-7 rounded-full bg-gradient-to-r from-[#0878E8] to-[#20B9FF] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-white">Most selected</span>}
               <div className="flex items-center justify-between gap-3"><span className="text-[10px] font-bold uppercase tracking-[.17em] text-[#83D2FF]">{item.category}</span><span className="text-xs text-blue-100/40">0{index+1}</span></div>
               <h3 className="mt-5 text-2xl font-semibold text-white">{item.name}</h3><p className="mt-3 min-h-[3.5rem] text-sm leading-7 text-blue-100/65">{item.intro}</p>
               <div className="mt-7 border-y border-white/10 py-5"><Price market={market} value={item.price}/><p className="mt-1 text-xs text-blue-100/45">{item.unit==="one-time"?"One-time project fee":item.unit==="per month"?"Monthly service fee":item.unit==="package total"?"Fixed package total":"Service fee"}</p></div>
               <p className="mt-6 text-xs font-bold uppercase tracking-[.15em] text-white/80">What's included</p>
-              <ul className="mt-4 flex-1 space-y-3">{item.features.slice(0,5).map(feature=><li key={feature} className="flex items-start gap-2.5 text-sm leading-6 text-blue-100/70"><Check size={16} className="mt-1 shrink-0 text-[#68C8FF]"/>{feature}</li>)}</ul>
-              <button type="button" onClick={()=>setExpanded(expanded===item.id?"":item.id)} className="mt-6 inline-flex items-center justify-between border-t border-white/10 pt-5 text-sm font-semibold text-[#9DDEFF] hover:text-white"><span>{expanded===item.id?"Hide package details":"View all deliverables"}</span><ChevronDown size={17} className={`transition-transform ${expanded===item.id?"rotate-180":""}`}/></button>
-              {expanded===item.id&&<div className="mt-4 rounded-2xl border border-white/10 bg-black/15 p-4"><ul className="space-y-2.5">{item.features.map(feature=><li key={feature} className="flex items-start gap-2 text-xs leading-5 text-blue-100/75"><Check size={14} className="mt-0.5 shrink-0 text-[#68C8FF]"/>{feature}</li>)}</ul>{item.note&&<p className="mt-4 border-t border-white/10 pt-4 text-xs leading-6 text-blue-100/55">{item.note}</p>}<p className="mt-4 text-xs leading-6 text-blue-100/65"><strong className="text-white">Ideal for: </strong>{item.best}</p></div>}
+              <ul className="mt-4 space-y-3">{item.features.slice(0,3).map(feature=><li key={feature} className="flex items-start gap-2.5 text-sm leading-6 text-blue-100/70"><Check size={16} className="mt-1 shrink-0 text-[#68C8FF]"/>{feature}</li>)}</ul>
+              <button type="button" onClick={()=>setExpanded(expanded===item.id?"":item.id)} className="mt-6 inline-flex items-center justify-between border-t border-white/10 pt-5 text-sm font-semibold text-[#9DDEFF] hover:text-white"><span>{expanded===item.id?"See less":"See more"}</span><ChevronDown size={17} className={`transition-transform ${expanded===item.id?"rotate-180":""}`}/></button>
+              {expanded===item.id&&<div className="mt-4 rounded-2xl border border-white/10 bg-black/15 p-4"><ul className="space-y-2.5">{item.features.slice(3).map(feature=><li key={feature} className="flex items-start gap-2 text-xs leading-5 text-blue-100/75"><Check size={14} className="mt-0.5 shrink-0 text-[#68C8FF]"/>{feature}</li>)}</ul>{item.note&&<p className="mt-4 border-t border-white/10 pt-4 text-xs leading-6 text-blue-100/55">{item.note}</p>}<p className="mt-4 text-xs leading-6 text-blue-100/65"><strong className="text-white">Ideal for: </strong>{item.best}</p></div>}
               <Link href={`/contact?package=${encodeURIComponent(item.name)}&market=${marketKey}&currency=${market.currency}&price=${item.price}`} className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0759D6] to-[#0878E8] px-5 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-950/40">Get started <ArrowUpRight size={16}/></Link>
             </article>)}
           </div>
