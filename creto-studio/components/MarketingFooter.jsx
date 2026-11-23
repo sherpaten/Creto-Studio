@@ -56,6 +56,7 @@ export default function MarketingFooter() {
             <Link href="/services" className="transition-colors hover:text-[#0759D6]">Services</Link>
             <Link href="/packages" className="transition-colors hover:text-[#0759D6]">Packages & pricing</Link>
             <Link href="/projects" className="transition-colors hover:text-[#0759D6]">Projects</Link>
+            <Link href="/portfolio" className="transition-colors hover:text-[#0759D6]">Business portfolio</Link>
             <Link href="/#process" className="transition-colors hover:text-[#0759D6]">Our process</Link>
             <Link href="/about#team" className="transition-colors hover:text-[#0759D6]">Meet the team</Link>
             <Link href="/contact" className="transition-colors hover:text-[#0759D6]">Contact</Link>
