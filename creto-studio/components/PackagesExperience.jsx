@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight, ArrowUpRight, Check, CheckCircle2, ChevronDown, CircleHelp,
   Code2, Globe2, MapPin, MonitorSmartphone, Share2, Sparkles,
@@ -31,6 +32,14 @@ const markets = {
   }
 };
 
+const packageImages = {
+  "starter-website": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+  "business-website": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+  "social-media": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=85",
+  "video-content": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85",
+  "digital-growth": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+};
+
 const faqs = [
   ["Can I customise a package?", "Yes. The listed packages provide a clear starting scope. If you need different features, quantities or a combination of services, tell us about your requirements and we can prepare a tailored proposal."],
   ["Are domain and hosting included?", "Domain registration and hosting are not included unless they are specifically listed in your quotation. We can help you select and configure the right options."],
@@ -41,7 +50,7 @@ const faqs = [
 ];
 
 function Price({ market, value }) {
-  return <div className="flex items-end gap-2"><span className="pb-1 text-sm font-semibold text-[#8DD8FF]">{market.currency}</span><span className="text-4xl font-semibold tracking-tight text-[#102744] sm:text-5xl">{value}</span></div>;
+  return <div className="flex items-end gap-2"><span className="pb-1 text-sm font-semibold text-[#0878C8]">{market.currency}</span><span className="text-4xl font-semibold tracking-tight text-[#102744] sm:text-5xl">{value}</span></div>;
 }
 
 export default function PackagesExperience() {
@@ -102,8 +111,11 @@ export default function PackagesExperience() {
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-4 py-2 text-xs text-blue-100/65"><Wallet size={15} className="text-[#72CCFF]"/> {market.currency} · {market.label}</span>
           </div>
           <div className="mt-10 columns-1 gap-5 sm:columns-2 xl:columns-3">
-            {market.packages.map((item,index)=><article key={item.id} className={`relative mb-5 inline-block w-full break-inside-avoid rounded-3xl border bg-white p-6 shadow-[0_18px_50px_rgba(15,35,60,.09)] transition hover:-translate-y-1 hover:border-[#168BFF]/45 sm:p-7 ${item.popular?"border-[#168BFF]/45":"border-[#E5EAF0]"}`}>
+            {market.packages.map((item,index)=><article key={item.id} className={`relative mb-5 inline-block w-full break-inside-avoid overflow-hidden rounded-3xl border bg-white p-6 shadow-[0_18px_50px_rgba(15,35,60,.09)] transition hover:-translate-y-1 hover:border-[#168BFF]/45 sm:p-7 ${item.popular?"border-[#168BFF]/45":"border-[#E5EAF0]"}`}>
               {item.popular&&<span className="absolute -top-3 left-7 rounded-full border border-white/50 bg-[#0759D6] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-white">Most selected</span>}
+              <div className="-mx-6 -mt-6 mb-5 overflow-hidden sm:-mx-7 sm:-mt-7">
+                <Image src={packageImages[item.id]} alt={`${item.name} service preview`} width={1200} height={720} sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" quality={82} className="h-44 w-full object-cover transition duration-700 hover:scale-[1.03] sm:h-48" />
+              </div>
               <div className="flex items-center justify-between gap-3"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#0878C8]">{item.category}</span><span className="text-xs text-slate-400">0{index+1}</span></div>
               <h3 className="mt-5 text-xl font-bold text-[#102744]">{item.name}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{item.intro}</p>
