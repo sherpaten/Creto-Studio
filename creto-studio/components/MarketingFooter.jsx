@@ -78,7 +78,7 @@ export default function MarketingFooter() {
           <span>© {new Date().getFullYear()} Creto Studio. All rights reserved.</span>
           <span className="inline-flex items-center gap-2">
             <MapPin size={13} aria-hidden="true" /> Made with care in Nepal <span>·</span>
-            <Mail size={13} aria-hidden="true" /> cretostudio115@gmail.com
+            <Mail size={13} aria-hidden="true" /> info@cretostudio.com
           </span>
         </div>
       </div>
